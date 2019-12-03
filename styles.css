@@ -1,4 +1,4 @@
-*{
+* {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
@@ -35,4 +35,53 @@ h3 {
   text-transform: uppercase;
   display: inline-block;
   padding: 0 5px;
+}
+
+.left-section {
+  border: 3px solid red;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.card {
+  margin: 20px 20px;
+  border: 4px solid darkgreen;
+  background-color: white;
+  padding: 10px 10px;
+}
+
+button {
+  background-color: #d0d2d3;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 4px 4px;
+  border-radius: 20%;
+  font-weight: 500;
+}
+
+.range {
+  border: 2px solid cornflowerblue;
+  width: 30%;
+  display: inline-block;
+}
+
+.guess {
+border: 2px solid pink;
+width: 30%;
+display: inline-block;
+}
+
+.name {
+border: 2px solid purple;
+width: 65%;
+display: inline-block;
+}
+
+.latest {
+  border: 3px solid darkseagreen;
+  width: 49%;
+  display: inline-block;
+  text-align: center;
 }

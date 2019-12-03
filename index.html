@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title> Number Guesser</title>
+    <title>Number Guesser</title>
   </head>
   <body>
     <header>
@@ -19,11 +19,11 @@
           <h2>Set Range</h2>
           <div>
             <label>Min Range</label>
-            <input type="text" name="" value="">
+            <input type="text">
           </div>
           <div>
             <label>Max Range</label>
-            <input type="text" name="" value="">
+            <input type="text">
           </div>
           <button type="button" name="button">UPDATE</button>
         </div>
@@ -31,22 +31,24 @@
           <h2>Challenger 1</h2>
           <div>
             <label>Name</label>
-            <input type="text" name="" value="">
+            <input type="text" class="name-guess">
           </div>
           <div>
             <label>Guess</label>
+            <input type="text" class="name-guess">
           </div>
           <h2>Challenger 2</h2>
           <div>
             <label>Name</label>
-            <input type="text" name="" value="">
+            <input type="text" class="name-guess">
           </div>
           <div>
             <label>Guess</label>
+            <input type="text" class="name-guess">
           </div>
-          <button type="button" name="button">SUBMIT GUESS</button>
-          <button type="button" name="button">RESET GAME</button>
-          <button type="button" name="button">CLEAR FORM</button>
+          <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
+          <button type="button" name="button" disabled="disabled" class="reset-game-button">RESET GAME</button>
+          <button type="button" name="button" disabled="disabled" class="clear-form-button">CLEAR FORM</button>
         </div>
         <div class="card">
           <h2>Latest Guess</h2>
@@ -68,6 +70,6 @@
 
       </section>
     </main>
-
+    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>

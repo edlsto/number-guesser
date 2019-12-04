@@ -105,3 +105,7 @@ display: inline-block;
   display: inline-block;
   text-align: center;
 }
+
+h3.score {
+  color: #dd1972;
+}

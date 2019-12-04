@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title> Number Guesser</title>
+    <title>Number Guesser</title>
   </head>
   <body>
     <header>
@@ -19,51 +19,51 @@
           <h2>Set Range</h2>
           <div class="range">
             <label>Min Range</label>
-            <input type="text" name="" value="">
+            <input type="text" id="min">
           </div>
           <div class="range">
             <label>Max Range</label>
-            <input type="text" name="" value="">
+            <input type="text" id="max">
           </div>
-          <button class="button1"type="button" name="button">UPDATE</button>
+          <button type="button" name="button" class="update-button button1">UPDATE</button>
         </div>
         <div class="card">
-          <h4>The Current Range is 1 to 100</h4>
+          <p>The current range is between <span id="min-display">1</span> and <span id="max-display">100</span></p>
           <h2>Challenger 1</h2>
           <div class="name">
             <label>Name</label>
-            <input type="text" name="" value="">
+            <input type="text" class="name-guess" id="challenger-1-name-input">
           </div>
           <div class="guess">
             <label>Guess</label>
-            <input type="text" name="" value="">
+            <input type="text" class="name-guess" id="challenger-1-guess-input">
           </div>
           <h2>Challenger 2</h2>
           <div class="name">
             <label>Name</label>
-            <input type="text" name="" value="">
+            <input type="text" class="name-guess" id="challenger-2-name-input">
           </div>
           <div class="guess">
             <label>Guess</label>
-            <input type="text" name="" value="">
+            <input type="text" class="name-guess" id="challenger-2-guess-input">
           </div>
-          <button type="button" name="button">SUBMIT GUESS</button>
-          <button class="button2"type="button" name="button">RESET GAME</button>
-          <button type="button" name="button">CLEAR FORM</button>
+          <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
+          <button type="button" name="button" disabled="disabled" class="reset-game-button">RESET GAME</button>
+          <button type="button" name="button" disabled="disabled" class="clear-form-button">CLEAR FORM</button>
         </div>
         <div class="card">
           <h2>Latest Guess</h2>
-          <div class="latest">
-            <p>Challenger 1 Name</p>
+          <div>
+            <p id="challenger-1-name">Challenger 1 Name</p>
             <p>current guess</p>
-            <h3 class="score">97</h3>
-            <p>no guesses yet!</p>
+            <h3 class="score" id="challenger-1-guess">97</h3>
+            <p id="response1">no guesses yet!</p>
           </div>
           <div class="latest">
-            <p>Challenger 2 Name</p>
+            <p id="challenger-2-name">Challenger 2 Name</p>
             <p>current guess</p>
-            <h3 class="score">3</h3>
-            <p>no guesses yet!</p>
+            <h3 class="score" id="challenger-2-guess">3</h3>
+            <p id="response2">no guesses yet!</p>
           </div>
         </div>
       </section>
@@ -71,6 +71,6 @@
 
       </section>
     </main>
-
+    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>

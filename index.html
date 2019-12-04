@@ -19,15 +19,16 @@
           <h2>Set Range</h2>
           <div>
             <label>Min Range</label>
-            <input type="text">
+            <input type="text" id="min">
           </div>
           <div>
             <label>Max Range</label>
-            <input type="text">
+            <input type="text" id="max">
           </div>
-          <button type="button" name="button">UPDATE</button>
+          <button type="button" name="button" class="update-button">UPDATE</button>
         </div>
         <div class="card">
+          <p>The current range is between <span id="min-display">1</span> and <span id="max-display">100</span></p>
           <h2>Challenger 1</h2>
           <div>
             <label>Name</label>
@@ -56,13 +57,13 @@
             <p id="challenger-1-name">Challenger 1 Name</p>
             <p>current guess</p>
             <h3 class="score" id="challenger-1-guess">97</h3>
-            <p>no guesses yet!</p>
+            <p id="response1">no guesses yet!</p>
           </div>
           <div>
             <p id="challenger-2-name">Challenger 2 Name</p>
             <p>current guess</p>
             <h3 class="score" id="challenger-2-guess">3</h3>
-            <p>no guesses yet!</p>
+            <p id="response2">no guesses yet!</p>
           </div>
         </div>
       </section>

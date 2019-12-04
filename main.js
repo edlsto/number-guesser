@@ -27,11 +27,3 @@ for (var i = 0; i < nameGuessInputs.length; i++) {
     }
   });
 }
-
-clearFormBtn.addEventListener("click", function () {
-  for (var i = 0; i< nameGuessInputs.length; i++) {
-    nameGuessInputs[i].value = "";
-  }
-  submitGuessBtn.setAttribute("disabled", "disabled");
-  clearFormBtn.setAttribute("disabled", "disabled");
-});

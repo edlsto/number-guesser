@@ -3,6 +3,7 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: 'Open Sans',sans-serif;
+color: #404041;
 }
 
 header {
@@ -27,6 +28,7 @@ h1 {
 }
 h1 span {
   font-weight: 300;
+  color: #dd1972;
 }
 
 h3 {
@@ -38,7 +40,7 @@ h3 {
 }
 
 .left-section {
-  border: 3px solid red;
+  /* border: 3px solid red; */
   display: inline-block;
   width: 50%;
   height: 100%;
@@ -47,7 +49,7 @@ h3 {
 
 .card {
   margin: 20px 20px;
-  border: 4px solid darkgreen;
+  /* border: 4px solid darkgreen; */
   background-color: white;
   padding: 10px 10px;
 }
@@ -56,31 +58,46 @@ button {
   background-color: #d0d2d3;
   color: #ffffff;
   font-size: 20px;
-  padding: 4px 4px;
-  border-radius: 20%;
+  padding: 4px 14px;
+  border-radius: 22px;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .range {
-  border: 2px solid cornflowerblue;
+  /* border: 2px solid cornflowerblue; */
   width: 30%;
   display: inline-block;
 }
 
+.range input{
+  width: 150px;
+  height: 30px;
+  margin-top: 5px;
+}
+
+.button1 {
+  margin-left: 125px;
+}
+
+.button2 {
+  margin: 0 70px 0 60px;
+}
+
 .guess {
-border: 2px solid pink;
+/* border: 2px solid pink; */
 width: 30%;
 display: inline-block;
 }
 
 .name {
-border: 2px solid purple;
+/* border: 2px solid purple; */
 width: 65%;
 display: inline-block;
 }
 
 .latest {
-  border: 3px solid darkseagreen;
+  /* border: 3px solid darkseagreen; */
   width: 49%;
   display: inline-block;
   text-align: center;

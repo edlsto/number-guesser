@@ -38,9 +38,13 @@ clearFormBtn.addEventListener("click", function () {
 
 submitGuessBtn.addEventListener("click", function () {
   var name1input = document.querySelector('#challenger-1-name-input');
+  var name1 = name1input.value;
   var guess1input = document.querySelector('#challenger-1-guess-input');
+  var guess1 = guess1input.value;
   var name2input = document.querySelector('#challenger-2-name-input');
+  var name2 = name2input.value;
   var guess2input = document.querySelector('#challenger-2-guess-input');
+  var guess2 = guess2input.value;
   var name1Display = document.querySelector('#challenger-1-name');
   var guess1Display = document.querySelector('#challenger-1-guess');
   var name2Display = document.querySelector('#challenger-2-name');

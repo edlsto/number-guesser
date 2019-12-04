@@ -88,6 +88,7 @@ button {
   width: 205px;
   height: 50px;
   margin-top: 5px;
+  font-size: 25px;
 }
 
 #range-card {
@@ -133,4 +134,5 @@ label {
 p span {
   font-weight: bold;
   text-decoration: underline;
+  text-decoration-thickness: 2px;
 }

@@ -10,7 +10,9 @@ var name1Display = document.querySelector('#challenger-1-name');
 var guess1Display = document.querySelector('#challenger-1-guess');
 var name2Display = document.querySelector('#challenger-2-name');
 var guess2Display = document.querySelector('#challenger-2-guess');
-
+var response1Display = document.querySelector('#response1');
+var response2Display = document.querySelector('#response2');
+var number = 22;
 
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){
@@ -56,9 +58,10 @@ submitGuessBtn.addEventListener("click", function () {
   name2Display.innerText = name2;
   guess2Display.innerText = guess2;
 
-  var response1 = evaluateGuess(player1.guess, number);
-  var response2 = evaluateGuess(player2.guess, number);
-  
+  var response1 = evaluateGuess(guess1, number);
+  var response2 = evaluateGuess(guess2, number);
+  response1Display.innerText = response1;
+  response2Display.innerText = response2;
 });
 
 //evaluates guess

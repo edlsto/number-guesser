@@ -57,7 +57,6 @@ submitGuessBtn.addEventListener("click", function () {
   guess1Display.innerText = guess1;
   name2Display.innerText = name2;
   guess2Display.innerText = guess2;
-
   var response1 = evaluateGuess(guess1, number);
   var response2 = evaluateGuess(guess2, number);
   response1Display.innerText = response1;

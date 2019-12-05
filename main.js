@@ -61,6 +61,10 @@ submitGuessBtn.addEventListener("click", function () {
   var response2 = evaluateGuess(guess2, number);
   response1Display.innerText = response1;
   response2Display.innerText = response2;
+  submitGuessBtn.setAttribute("disabled", "disabled");
+  clearFormBtn.setAttribute("disabled", "disabled");
+  guess1input.value = "";
+  guess2input.value = "";
 });
 
 //evaluates guess

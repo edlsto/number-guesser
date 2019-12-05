@@ -16,7 +16,6 @@ var minInput = document.querySelector('#min');
 var maxInput = document.querySelector('#max');
 var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
-var number = Math.floor(Math.random() * 100 + 1);
 var minNumber = 1;
 var maxNumber = 100;
 

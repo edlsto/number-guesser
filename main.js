@@ -57,3 +57,14 @@ submitGuessBtn.addEventListener("click", function () {
   guess2Display.innerText = guess2;
 
 });
+
+//evaluates guess
+function evaluateGuess (guess, number) {
+  if (guess < number) {
+    return "That's too low"
+  } else if (guess > number) {
+    return "That's too high"
+  } else {
+    return "BOOM!"
+  };
+}

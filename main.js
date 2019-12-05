@@ -14,6 +14,18 @@ var response1Display = document.querySelector('#response1');
 var response2Display = document.querySelector('#response2');
 var number = Math.floor(Math.random() * 100 + 1);
 
+var name1input = document.querySelector('#challenger-1-name-input');
+var guess1input = document.querySelector('#challenger-1-guess-input');
+var name2input = document.querySelector('#challenger-2-name-input');
+var guess2input = document.querySelector('#challenger-2-guess-input');
+var name1Display = document.querySelector('#challenger-1-name');
+var guess1Display = document.querySelector('#challenger-1-guess');
+var name2Display = document.querySelector('#challenger-2-name');
+var guess2Display = document.querySelector('#challenger-2-guess');
+var response1Display = document.querySelector('#response1');
+var response2Display = document.querySelector('#response2');
+var number = 22;
+
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){
     if ((nameGuessInputs[0].value != "") &&
@@ -69,6 +81,14 @@ submitGuessBtn.addEventListener("click", function () {
   var response2 = evaluateGuess(guess2, number);
   response1Display.innerText = response1;
   response2Display.innerText = response2;
+  var response1 = evaluateGuess(guess1, number);
+  var response2 = evaluateGuess(guess2, number);
+  response1Display.innerText = response1;
+  response2Display.innerText = response2;
+  submitGuessBtn.setAttribute("disabled", "disabled");
+  clearFormBtn.setAttribute("disabled", "disabled");
+  guess1input.value = "";
+  guess2input.value = "";
 });
 
 //evaluates guess

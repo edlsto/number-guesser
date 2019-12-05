@@ -46,7 +46,6 @@ var name2Display = document.querySelector('#challenger-2-name');
 var guess2Display = document.querySelector('#challenger-2-guess');
 var response1Display = document.querySelector('#response1');
 var response2Display = document.querySelector('#response2');
-var number = 22;
 
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){

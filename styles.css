@@ -6,6 +6,10 @@ font-family: 'Open Sans',sans-serif;
 color: #404041;
 }
 
+main {
+  white-space: nowrap;
+}
+
 header {
   background-color: #404041;
   width: 100%;
@@ -52,7 +56,7 @@ h3 {
 
 .right-section {
   display: inline-block;
-  width: 49%;
+  width: 50%;
   height: 100vh;
   vertical-align: top;
   background-color: #d0d2d3;

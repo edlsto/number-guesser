@@ -1,6 +1,7 @@
 var nameGuessInputs = document.querySelectorAll('.name-guess');
 var submitGuessBtn = document.querySelector('.submit-guess-button');
 var clearFormBtn = document.querySelector('.clear-form-button');
+var updateBtn = document.querySelector('.update-button')
 var name1input = document.querySelector('#challenger-1-name-input');
 var guess1input = document.querySelector('#challenger-1-guess-input');
 var name2input = document.querySelector('#challenger-2-name-input');
@@ -11,7 +12,8 @@ var name2Display = document.querySelector('#challenger-2-name');
 var guess2Display = document.querySelector('#challenger-2-guess');
 var response1Display = document.querySelector('#response1');
 var response2Display = document.querySelector('#response2');
-var number = 22;
+var number = Math.floor(Math.random() * 100 + 1);
+
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){
     if ((nameGuessInputs[0].value != "") &&
@@ -25,6 +27,7 @@ for (var i = 0; i < nameGuessInputs.length; i++) {
     }
   });
 }
+
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){
     if ((nameGuessInputs[0].value != "") ||
@@ -36,6 +39,7 @@ for (var i = 0; i < nameGuessInputs.length; i++) {
     }
   });
 }
+
 clearFormBtn.addEventListener("click", function () {
  for (var i = 0; i< nameGuessInputs.length; i++) {
    nameGuessInputs[i].value = "";
@@ -43,6 +47,7 @@ clearFormBtn.addEventListener("click", function () {
  submitGuessBtn.setAttribute("disabled", "disabled");
  clearFormBtn.setAttribute("disabled", "disabled");
 });
+
 submitGuessBtn.addEventListener("click", function () {
   var name1 = name1input.value;
   var guess1 = guess1input.value;
@@ -52,12 +57,16 @@ submitGuessBtn.addEventListener("click", function () {
   guess1Display.innerText = guess1;
   name2Display.innerText = name2;
   guess2Display.innerText = guess2;
-
   var response1 = evaluateGuess(guess1, number);
   var response2 = evaluateGuess(guess2, number);
   response1Display.innerText = response1;
   response2Display.innerText = response2;
+  submitGuessBtn.setAttribute("disabled", "disabled");
+  clearFormBtn.setAttribute("disabled", "disabled");
+  guess1input.value = "";
+  guess2input.value = "";
 });
+
 //evaluates guess
 function evaluateGuess (guess, number) {
   if (guess < number) {

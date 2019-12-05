@@ -45,9 +45,10 @@ h3 {
 .left-section {
   /* border: 3px solid red; */
   display: inline-block;
-  width: 50%;
+  width: 50.6%;
   height: 100%;
   background-color: #f7f7f7;
+  margin-right: -5px;
 }
 
 .right-section {
@@ -67,14 +68,26 @@ h3 {
 }
 
 button {
-  background-color: #d0d2d3;
+  background-color: #6e6e6e;
   color: #ffffff;
+  height: 40px;
   font-size: 20px;
   padding: 4px 14px;
   border-radius: 22px;
   font-weight: 700;
   margin-top: 10px;
-  border-color: #d0d2d3
+  border-color: #d0d2d3;
+  width: 195px;
+}
+
+button[disabled] {
+  background-color: #d0d2d3;
+}
+
+
+.reset-game-button {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .range {
@@ -88,6 +101,7 @@ button {
   width: 205px;
   height: 50px;
   margin-top: 5px;
+  font-size: 25px;
 }
 
 #range-card {
@@ -109,10 +123,22 @@ width: 30%;
 display: inline-block;
 }
 
+.guess input {
+  height: 40px;
+  width: 200px;
+}
+
 .name {
 /* border: 2px solid purple; */
 width: 65%;
 display: inline-block;
+padding-top: 10px;
+padding-bottom: 30px;
+}
+
+.name input{
+  height: 40px;
+  width: 385px;
 }
 
 .latest {
@@ -128,9 +154,19 @@ h3.score {
 
 label {
   font-size: 20px;
+  display: block;
 }
 
 p span {
   font-weight: bold;
   text-decoration: underline;
+}
+
+#current-range {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+#challenger-card {
+  padding: 15px;
 }

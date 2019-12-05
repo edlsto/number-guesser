@@ -48,6 +48,13 @@ clearFormBtn.addEventListener("click", function () {
  clearFormBtn.setAttribute("disabled", "disabled");
 });
 
+function clearContents () {
+  guess1input.value = "";
+  guess2input.value = "";
+  submitGuessBtn.setAttribute("disabled", "disabled");
+  clearFormBtn.setAttribute("disabled", "disabled");
+}
+
 submitGuessBtn.addEventListener("click", function () {
   var name1 = name1input.value;
   var guess1 = guess1input.value;
@@ -57,14 +64,11 @@ submitGuessBtn.addEventListener("click", function () {
   guess1Display.innerText = guess1;
   name2Display.innerText = name2;
   guess2Display.innerText = guess2;
+  clearContents();
   var response1 = evaluateGuess(guess1, number);
   var response2 = evaluateGuess(guess2, number);
   response1Display.innerText = response1;
   response2Display.innerText = response2;
-  submitGuessBtn.setAttribute("disabled", "disabled");
-  clearFormBtn.setAttribute("disabled", "disabled");
-  guess1input.value = "";
-  guess2input.value = "";
 });
 
 //evaluates guess

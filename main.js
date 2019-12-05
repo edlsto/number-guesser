@@ -53,8 +53,8 @@ submitGuessBtn.addEventListener("click", function () {
   name2Display.innerText = name2;
   var guess2Display = document.querySelector('#challenger-2-guess');
   guess2Display.innerText = guess2;
-
   submitGuessBtn.setAttribute("disabled", "disabled");
   clearFormBtn.setAttribute("disabled", "disabled");
-
+  guess1input.value = "";
+  guess2input.value = "";
 });

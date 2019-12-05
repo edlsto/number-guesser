@@ -21,7 +21,7 @@
             <label>Min Range</label>
             <input type="text" id="min">
           </div>
-          <div class="range">
+          <div id="max-range"class="range">
             <label>Max Range</label>
             <input type="text" id="max">
           </div>
@@ -48,18 +48,18 @@
             <input type="text" class="name-guess" id="challenger-2-guess-input">
           </div>
           <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
-          <button type="button" name="button" disabled="disabled" class="reset-game-button">RESET GAME</button>
+          <button type="button" name="button" disabled="disabled" class="reset-game-button button2">RESET GAME</button>
           <button type="button" name="button" disabled="disabled" class="clear-form-button">CLEAR FORM</button>
         </div>
         <div class="card">
-          <h2>Latest Guess</h2>
-          <div>
+          <h2 id="latest-guess-margin">Latest Guess</h2>
+          <div id="latest-guess-middle"class="latest-guess">
             <p id="challenger-1-name">Challenger 1 Name</p>
             <p>current guess</p>
             <h3 class="score" id="challenger-1-guess">97</h3>
             <p id="response1">no guesses yet!</p>
           </div>
-          <div class="latest">
+          <div class="latest-guess latest">
             <p id="challenger-2-name">Challenger 2 Name</p>
             <p>current guess</p>
             <h3 class="score" id="challenger-2-guess">3</h3>

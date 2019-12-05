@@ -6,6 +6,10 @@ font-family: 'Open Sans',sans-serif;
 color: #404041;
 }
 
+main {
+  position: relative;
+}
+
 header {
   background-color: #404041;
   width: 100%;
@@ -53,11 +57,12 @@ h3 {
 
 .right-section {
   display: inline-block;
-  width: 49%;
-  height: 100vh;
+  width: 50%;
+  height: 100%;
   vertical-align: top;
   background-color: #d0d2d3;
-  border-left: 2px solid #404041;
+  border-left: 2px solid gray;
+  position: absolute;
 }
 
 .card {
@@ -77,7 +82,7 @@ button {
   font-weight: 700;
   margin-top: 10px;
   border-color: #d0d2d3;
-  width: 195px;
+  width: 175px;
 }
 
 button[disabled] {
@@ -98,23 +103,28 @@ button[disabled] {
 }
 
 .range input{
-  width: 205px;
-  height: 50px;
+  width: 190px;
+  height: 40px;
   margin-top: 5px;
   font-size: 25px;
+  margin-right: 25px;
+}
+
+#max-range {
+  margin-left: -15px;
 }
 
 #range-card {
-  padding: 10px 15px 40px 15px;
+  padding: 10px 15px 35px 15px;
 }
 
 .button1 {
-  margin-left: -15px;
+  margin-left: -10px;
   width: 125px;
 }
 
 .button2 {
-  margin: 0 70px 0 60px;
+  margin: 0 5px 0 5px;
 }
 
 .guess {
@@ -125,7 +135,7 @@ display: inline-block;
 
 .guess input {
   height: 40px;
-  width: 200px;
+  width: 180px;
 }
 
 .name {
@@ -138,7 +148,7 @@ padding-bottom: 30px;
 
 .name input{
   height: 40px;
-  width: 385px;
+  width: 335px;
 }
 
 .latest {
@@ -148,8 +158,20 @@ padding-bottom: 30px;
   text-align: center;
 }
 
+.latest-guess {
+  width: 48%;
+  display: inline-block;
+  text-align: center;
+}
+
+#latest-guess-middle {
+  border-right: 2px solid gray;
+}
+
 h3.score {
   color: #dd1972;
+  font-size: 100px;
+  font-weight: bold;
 }
 
 label {
@@ -169,4 +191,24 @@ p span {
 
 #challenger-card {
   padding: 15px;
+}
+
+#latest-guess-margin {
+  margin: 0 0 10px 10px;
+}
+
+#response1 {
+  font-size: 25px;
+}
+
+#response2 {
+  font-size: 25px;
+}
+
+#challenger-1-name {
+  font-weight: bold;
+}
+
+#challenger-2-name {
+  font-weight: bold;
 }

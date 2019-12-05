@@ -1,7 +1,7 @@
 var nameGuessInputs = document.querySelectorAll('.name-guess');
 var submitGuessBtn = document.querySelector('.submit-guess-button');
 var clearFormBtn = document.querySelector('.clear-form-button');
-
+console.log(nameGuessInputs)
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){
     if ((nameGuessInputs[0].value != "") &&

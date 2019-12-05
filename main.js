@@ -20,6 +20,23 @@ var number = Math.floor(Math.random() * 100 + 1);
 var minNumber = 1;
 var maxNumber = 100;
 
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+var number = calculateMaxMinRandom(minNumber, maxNumber);
+
+updateBtn.addEventListener('click', setMinMax)
+
+function setMinMax () {
+  minNumber = parseInt(minInput.value);
+  maxNumber = parseInt(maxInput.value);
+  number = calculateMaxMinRandom(minNumber, maxNumber);
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
+
+}
+
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){
     if ((nameGuessInputs[0].value != "") &&

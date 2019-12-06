@@ -138,6 +138,10 @@ display: inline-block;
   width: 180px;
 }
 
+.name-guess {
+  font-size: 22px;
+}
+
 .name {
 /* border: 2px solid purple; */
 width: 65%;

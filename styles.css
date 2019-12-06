@@ -82,7 +82,7 @@ button {
   font-weight: 700;
   margin-top: 10px;
   border-color: #d0d2d3;
-  width: 175px;
+  width: 205px;
 }
 
 button[disabled] {
@@ -103,28 +103,27 @@ button[disabled] {
 }
 
 .range input{
-  width: 190px;
+  width: 245px;
   height: 40px;
   margin-top: 5px;
   font-size: 25px;
   margin-right: 25px;
 }
 
-#max-range {
-  margin-left: -15px;
-}
-
-#range-card {
-  padding: 10px 15px 35px 15px;
+.range-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 .button1 {
   margin-left: -10px;
   width: 125px;
+  align-self: flex-end;
 }
 
-.button2 {
-  margin: 0 5px 0 5px;
+.three-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .guess {
@@ -135,7 +134,11 @@ display: inline-block;
 
 .guess input {
   height: 40px;
-  width: 180px;
+  width: 226px;
+}
+
+.name-guess {
+  font-size: 22px;
 }
 
 .name {
@@ -148,7 +151,7 @@ padding-bottom: 30px;
 
 .name input{
   height: 40px;
-  width: 335px;
+  width: 415px;
 }
 
 .latest {
@@ -164,6 +167,10 @@ padding-bottom: 30px;
   text-align: center;
 }
 
+.number-space {
+  height: 100px;
+}
+
 #latest-guess-middle {
   border-right: 2px solid gray;
 }
@@ -172,6 +179,7 @@ h3.score {
   color: #dd1972;
   font-size: 100px;
   font-weight: bold;
+  line-height: 100px;
 }
 
 label {
@@ -184,6 +192,10 @@ p span {
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
+
+#range-card {
+  padding-bottom: 30px;
+  }
 
 #current-range {
   font-size: 20px;

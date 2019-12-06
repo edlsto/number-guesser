@@ -33,19 +33,7 @@ function setMinMax () {
   number = calculateMaxMinRandom(minNumber, maxNumber);
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
-
 }
-
-var name1input = document.querySelector('#challenger-1-name-input');
-var guess1input = document.querySelector('#challenger-1-guess-input');
-var name2input = document.querySelector('#challenger-2-name-input');
-var guess2input = document.querySelector('#challenger-2-guess-input');
-var name1Display = document.querySelector('#challenger-1-name');
-var guess1Display = document.querySelector('#challenger-1-guess');
-var name2Display = document.querySelector('#challenger-2-name');
-var guess2Display = document.querySelector('#challenger-2-guess');
-var response1Display = document.querySelector('#response1');
-var response2Display = document.querySelector('#response2');
 
 for (var i = 0; i < nameGuessInputs.length; i++) {
   nameGuessInputs[i].addEventListener("keyup", function(){

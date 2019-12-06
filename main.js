@@ -17,13 +17,28 @@ var minInput = document.querySelector('#min');
 var maxInput = document.querySelector('#max');
 var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
+var rightSide = document.querySelector('.right-section')
+var guesses = 0;
+var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
-function calculateMaxMinRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
 var number = calculateMaxMinRandom(minNumber, maxNumber);
-updateBtn.addEventListener('click', setMinMax)
+
+playGame();
+
+function playGame () {
+  var winner;
+  updateBtn.addEventListener('click', setMinMax);
+  for (var i = 0; i < nameGuessInputs.length; i++) {
+    nameGuessInputs[i].addEventListener("keyup", checkInputsAllFilled);
+  }
+  for (var i = 0; i < nameGuessInputs.length; i++) {
+    nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
+  }
+  clearFormBtn.addEventListener("click", clearForm);
+  submitGuessBtn.addEventListener("click", submitGuess);
+}
+
 function setMinMax () {
   minNumber = parseInt(minInput.value);
   maxNumber = parseInt(maxInput.value);
@@ -32,58 +47,64 @@ function setMinMax () {
   maxDisplay.innerText = maxNumber;
 }
 
-for (var i = 0; i < nameGuessInputs.length; i++) {
-  nameGuessInputs[i].addEventListener("keyup", function(){
-    if ((nameGuessInputs[0].value != "") &&
-    (nameGuessInputs[1].value != "") &&
-    (nameGuessInputs[2].value != "") &&
-    (nameGuessInputs[3].value != "")
-    ){
-      submitGuessBtn.removeAttribute("disabled");
-    } else {
-      submitGuessBtn.setAttribute("disabled", "disabled");
-    }
-  });
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+function checkInputsAllFilled(){
+  if ((nameGuessInputs[0].value != "") &&
+  (nameGuessInputs[1].value != "") &&
+  (nameGuessInputs[2].value != "") &&
+  (nameGuessInputs[3].value != "")
+  ){
+    submitGuessBtn.removeAttribute("disabled");
+  } else {
+    submitGuessBtn.setAttribute("disabled", "disabled");
+  }
 }
-for (var i = 0; i < nameGuessInputs.length; i++) {
-  nameGuessInputs[i].addEventListener("keyup", function(){
-    if ((nameGuessInputs[0].value != "") ||
-    (nameGuessInputs[1].value != "") ||
-    (nameGuessInputs[2].value != "") ||
-    (nameGuessInputs[3].value != "")
-    ){
-      clearFormBtn.removeAttribute("disabled");
-    }
-  });
+
+function checkInputsAnyFilled(){
+  if ((nameGuessInputs[0].value != "") ||
+  (nameGuessInputs[1].value != "") ||
+  (nameGuessInputs[2].value != "") ||
+  (nameGuessInputs[3].value != "")
+  ){
+    clearFormBtn.removeAttribute("disabled");
+  }
 }
-clearFormBtn.addEventListener("click", function () {
+
+function clearForm () {
  for (var i = 0; i< nameGuessInputs.length; i++) {
    nameGuessInputs[i].value = "";
  }
  submitGuessBtn.setAttribute("disabled", "disabled");
  clearFormBtn.setAttribute("disabled", "disabled");
-});
-function clearContents () {
+}
+
+function clearGuesses () {
   guess1input.value = "";
   guess2input.value = "";
   submitGuessBtn.setAttribute("disabled", "disabled");
-  clearFormBtn.setAttribute("disabled", "disabled");
 }
-submitGuessBtn.addEventListener("click", function () {
-  var name1 = name1input.value;
-  var guess1 = guess1input.value;
-  var name2 = name2input.value;
-  var guess2 = guess2input.value;
-  name1Display.innerText = name1;
-  guess1Display.innerText = guess1;
-  name2Display.innerText = name2;
-  guess2Display.innerText = guess2;
-  clearContents();
-  var response1 = evaluateGuess(guess1, number);
-  var response2 = evaluateGuess(guess2, number);
-  response1Display.innerText = response1;
-  response2Display.innerText = response2;
-});
+
+function checkWinner (player1, guess1, player2, guess2) {
+  if (guess1 == number) {
+    winner = player1;
+    displayWinner(winner);
+  } else if (guess2 == number) {
+    winner = player2;
+    displayWinner(winner);  }
+}
+
+function submitGuess() {
+  guesses++
+  displayNamesGuesses(name1input.value, guess1input.value, name2input.value, guess2input.value);
+  displayResponses(evaluateGuess(guess1input.value, number), evaluateGuess(guess2input.value, number));
+  checkWinner(name1input.value, guess1input.value, name2input.value, guess2input.value);
+  clearGuesses();
+
+}
+
 //evaluates guess
 function evaluateGuess (guess, number) {
   if (guess < number) {
@@ -93,4 +114,34 @@ function evaluateGuess (guess, number) {
   } else {
     return "BOOM!"
   };
+}
+
+function displayNamesGuesses (name1, guess1, name2, guess2) {
+  name1Display.innerText = name1;
+  guess1Display.innerText = guess1;
+  name2Display.innerText = name2;
+  guess2Display.innerText = guess2;
+}
+
+function displayResponses (response1, response2) {
+  response1Display.innerText = response1;
+  response2Display.innerText = response2;
+};
+
+function displayWinner (winner) {
+  var minutes = Math.floor(timer()/60);
+  var seconds = Math.floor(timer()%60);
+  rightSide.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><div class="card-row-item" id="x-button">x</div></div></div>`);
+  reset();
+}
+
+function reset () {
+  number = calculateMaxMinRandom(minNumber, maxNumber);
+  guesses = 0;
+  startTime = new Date();
+  winner = "";
+}
+
+function timer() {
+  return (new Date() - startTime) / 1000;
 }

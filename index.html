@@ -17,18 +17,20 @@
       <section class="left-section">
         <div id="range-card"class="card">
           <h2>Set Range</h2>
+          <div class="range-flex">
           <div class="range">
             <label>Min Range</label>
             <input type="text" id="min">
           </div>
-          <div class="range">
+          <div id="max-range"class="range">
             <label>Max Range</label>
             <input type="text" id="max">
           </div>
-          <button type="button" name="button" class="update-button button1">UPDATE</button>
+          <button type="button" name="button" class="update-button button1" disabled="disabled">UPDATE</button>
+          </div>
         </div>
-        <div class="card">
-          <p>The current range is between <span id="min-display">1</span> and <span id="max-display">100</span></p>
+        <div id="challenger-card"class="card">
+          <p id="current-range">The current range is between <span id="min-display">1</span> and <span id="max-display">100</span></p>
           <h2>Challenger 1</h2>
           <div class="name">
             <label>Name</label>
@@ -47,22 +49,28 @@
             <label>Guess</label>
             <input type="text" class="name-guess" id="challenger-2-guess-input">
           </div>
-          <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
-          <button type="button" name="button" disabled="disabled" class="reset-game-button">RESET GAME</button>
-          <button type="button" name="button" disabled="disabled" class="clear-form-button">CLEAR FORM</button>
+          <div class="three-buttons">
+            <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
+            <button type="button" name="button" disabled="disabled" class="reset-game-button">RESET GAME</button>
+            <button type="button" name="button" disabled="disabled" class="clear-form-button">CLEAR FORM</button>
+          </div>
         </div>
         <div class="card">
-          <h2>Latest Guess</h2>
-          <div>
+          <h2 id="latest-guess-margin">Latest Guess</h2>
+          <div id="latest-guess-middle"class="latest-guess">
             <p id="challenger-1-name">Challenger 1 Name</p>
             <p>current guess</p>
-            <h3 class="score" id="challenger-1-guess">97</h3>
+            <div class="number-space">
+              <h3 class="score" id="challenger-1-guess"></h3>
+            </div>
             <p id="response1">no guesses yet!</p>
           </div>
-          <div class="latest">
+          <div class="latest-guess latest">
             <p id="challenger-2-name">Challenger 2 Name</p>
             <p>current guess</p>
-            <h3 class="score" id="challenger-2-guess">3</h3>
+            <div class="number-space">
+              <h3 class="score" id="challenger-2-guess"></h3>
+            </div>
             <p id="response2">no guesses yet!</p>
           </div>
         </div>

@@ -1,3 +1,4 @@
+
 var nameGuessInputs = document.querySelectorAll('.name-guess');
 var submitGuessBtn = document.querySelector('.submit-guess-button');
 var clearFormBtn = document.querySelector('.clear-form-button');

@@ -25,7 +25,7 @@ function calculateMaxMinRandom(min, max) {
 
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 
-updateBtn.addEventListener('click', setMinMax)
+updateBtn.addEventListener('click', setMinMax);
 
 function setMinMax () {
   minNumber = parseInt(minInput.value);
@@ -33,7 +33,6 @@ function setMinMax () {
   number = calculateMaxMinRandom(minNumber, maxNumber);
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
-
 }
 
 var name1input = document.querySelector('#challenger-1-name-input');

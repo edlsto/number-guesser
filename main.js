@@ -31,10 +31,12 @@ function playGame () {
   updateBtn.addEventListener('click', setMinMax);
   for (var i = 0; i < nameGuessInputs.length; i++) {
     nameGuessInputs[i].addEventListener("keyup", checkInputsAllFilled);
-  }
+  };
   for (var i = 0; i < nameGuessInputs.length; i++) {
     nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
-  }
+  };
+  minInput.addEventListener("keyup", checkMinMaxFilled);
+  maxInput.addEventListener("keyup", checkMinMaxFilled);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
 }
@@ -49,6 +51,14 @@ function setMinMax () {
 
 function calculateMaxMinRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+function checkMinMaxFilled() {
+  if ((minInput.value != "") && (maxInput.value != "")) {
+    updateBtn.removeAttribute("disabled");
+  } else {
+    updateBtn.setAttribute("disabled", "disabled");
+  };
 };
 
 function checkInputsAllFilled(){

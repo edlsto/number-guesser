@@ -150,6 +150,7 @@ function reset () {
   guesses = 0;
   startTime = new Date();
   winner = "";
+  clearForm();
 }
 
 function timer() {

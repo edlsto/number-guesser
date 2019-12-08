@@ -279,6 +279,10 @@ div.row-1 {
   background-color: white;
 }
 
+.result-card.least-guesses {
+  background-color: #9EDD9D;
+}
+
 #winner-name {
   font-weight: 800;
 }
@@ -295,4 +299,9 @@ div.row-1 {
 
 .last-row {
   padding-top: 5px;
+}
+
+.clear-btn-container {
+  display: flex;
+  justify-content: center;
 }

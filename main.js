@@ -155,3 +155,6 @@ function reset () {
 function timer() {
   return (new Date() - startTime) / 1000;
 }
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeCard);

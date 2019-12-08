@@ -150,6 +150,10 @@ function reset () {
   guesses = 0;
   startTime = new Date();
   winner = "";
+  minNumber = minNumber - 10;
+  maxNumber = maxNumber + 10;
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
 }
 
 function timer() {

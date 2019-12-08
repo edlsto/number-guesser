@@ -98,7 +98,10 @@ function clearGuesses () {
 }
 
 function checkWinner (player1, guess1, player2, guess2) {
-  if (guess1 == number) {
+  if ((guess1 == number) && (guess2 == number)) {
+    winner = "Tie!";
+    displayWinner(winner);
+  } else if (guess1 == number) {
     winner = player1;
     displayWinner(winner);
   } else if (guess2 == number) {

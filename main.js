@@ -158,3 +158,7 @@ function reset () {
 function timer() {
   return (new Date() - startTime) / 1000;
 }
+
+function cheat() {
+  number = guess1input.value;
+};

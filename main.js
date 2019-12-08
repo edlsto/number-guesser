@@ -158,3 +158,9 @@ function timer() {
 
 var rightSideSection = document.querySelector(".right-section");
 rightSideSection.addEventListener('click', closeCard);
+
+function closeCard (event) {
+  if (event.target.id === "x-button") {
+    event.target.parentElement.parentElement.remove();
+  }
+}

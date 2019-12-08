@@ -23,6 +23,8 @@ var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
 var number = calculateMaxMinRandom(minNumber, maxNumber);
+var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+var index = 0;
 
 playGame();
 
@@ -39,6 +41,7 @@ function playGame () {
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
+  window.addEventListener("keyup", listenForCode);
 }
 
 function setMinMax () {

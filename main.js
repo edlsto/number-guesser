@@ -18,10 +18,9 @@ var maxInput = document.querySelector('#max');
 var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
 var errorAlert = document.querySelector('.error-message')
-
-
-//default values to be evaluated in our calculateMaxMinRandom function
-//see line 47
+var rightSide = document.querySelector('.right-section')
+var guesses = 0;
+var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
 
@@ -39,36 +38,29 @@ function valueCompare() {
      };
 
 
-
-    // errorAlert.setAttribute('hidden', true)
-
-
-
-
-//calculateMaxMinRandom is a function that creates a random number between
-//the min and max assigned by the players. Math.random finds a random decimal
-//between 0 and 1. we multiply that by the maximum number to increase the range
-//of numbers that can be assigned at random. Math.floor takes that random decimal
-//and rounds it down, to give a whole number.
-
 function calculateMaxMinRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-//here we assign the variable 'number' to the value, of the number created
-//at random between the min and max assigned by the players.
-//our updateBtn is listening for a click, when it will set our min and max
-//we create a variable from our minInput.value, and we use parseInt to set the
-//value to a number, otherwise, it will be interpreted as a string (data coersion)
-//we create a variable from our maxInput.value, and we use parseInt to set the
-//value to a number, otherwise, it will be interpreted as a string (data coersion)
-//we then calculate a random number between the min and max, and reassign that
-//to the variable 'number'
-//then we take those variables and display them as 'innerText' inside of
-//the span we created.
-
 var number = calculateMaxMinRandom(minNumber, maxNumber);
-updateBtn.addEventListener('click', setMinMax)
+
+playGame();
+
+function playGame () {
+  var winner;
+  updateBtn.addEventListener('click', setMinMax);
+  for (var i = 0; i < nameGuessInputs.length; i++) {
+    nameGuessInputs[i].addEventListener("keyup", checkInputsAllFilled);
+  };
+  for (var i = 0; i < nameGuessInputs.length; i++) {
+    nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
+  };
+  minInput.addEventListener("keyup", checkMinMaxFilled);
+  maxInput.addEventListener("keyup", checkMinMaxFilled);
+  clearFormBtn.addEventListener("click", clearForm);
+  submitGuessBtn.addEventListener("click", submitGuess);
+}
+
 function setMinMax () {
   minNumber = parseInt(minInput.value);
   maxNumber = parseInt(maxInput.value);
@@ -76,73 +68,76 @@ function setMinMax () {
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
 }
-//this is saying, that "for" every nameGuessInputs input we will add an event listener.
-//the event listener will be listening for the "keyup" or any key struck, while in
-//the nameGuessInputs. it says that "if" nameGuessInputs[0] through nameGuessInputs[3]
-//are all filled, the "disabled" attribute will be removed from the element associated
-//with the variable. '&&'= AND......also '!=' = NOT EQUAL TO
-for (var i = 0; i < nameGuessInputs.length; i++) {
-  nameGuessInputs[i].addEventListener("keyup", function(){
-    if ((nameGuessInputs[0].value != "") &&
-    (nameGuessInputs[1].value != "") &&
-    (nameGuessInputs[2].value != "") &&
-    (nameGuessInputs[3].value != "")
-    ){
-      submitGuessBtn.removeAttribute("disabled");
-    } else {
-      submitGuessBtn.setAttribute("disabled", "disabled");
-    }
-  });
-}
-for (var i = 0; i < nameGuessInputs.length; i++) {
-  nameGuessInputs[i].addEventListener("keyup", function(){
-    if ((nameGuessInputs[0].value != "") ||
-    (nameGuessInputs[1].value != "") ||
-    (nameGuessInputs[2].value != "") ||
-    (nameGuessInputs[3].value != "")
-    ){
-      clearFormBtn.removeAttribute("disabled");
-    }
-  });
-}
-//this is simply stating that we will set the value of nameGuessInputs to 'empty string'
-//when the clearFormBtn is clicked. then we will add the 'disabled' attribute
-//to the clearFormBtn and the submitGuessBtn
-clearFormBtn.addEventListener('click', clearInputFields);
 
-function clearInputFields() {
-  for (var i = 0; i< nameGuessInputs.length; i++) {
-    nameGuessInputs[i].value = "";
-    }
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+function checkMinMaxFilled() {
+  if ((minInput.value != "") && (maxInput.value != "")) {
+    updateBtn.removeAttribute("disabled");
+  } else {
+    updateBtn.setAttribute("disabled", "disabled");
+  };
+};
+
+function checkInputsAllFilled(){
+  if ((nameGuessInputs[0].value != "") &&
+  (nameGuessInputs[1].value != "") &&
+  (nameGuessInputs[2].value != "") &&
+  (nameGuessInputs[3].value != "")
+  ){
+    submitGuessBtn.removeAttribute("disabled");
+  } else {
+    submitGuessBtn.setAttribute("disabled", "disabled");
+  }
+}
+
+function checkInputsAnyFilled(){
+  if ((nameGuessInputs[0].value != "") ||
+  (nameGuessInputs[1].value != "") ||
+  (nameGuessInputs[2].value != "") ||
+  (nameGuessInputs[3].value != "")
+  ){
+    clearFormBtn.removeAttribute("disabled");
+  }
+}
+
+function clearForm () {
+ for (var i = 0; i< nameGuessInputs.length; i++) {
+   nameGuessInputs[i].value = "";
+ }
  submitGuessBtn.setAttribute("disabled", "disabled");
  clearFormBtn.setAttribute("disabled", "disabled");
-};
-function clearContents () {
+}
+
+function clearGuesses () {
   guess1input.value = "";
   guess2input.value = "";
   submitGuessBtn.setAttribute("disabled", "disabled");
-  clearFormBtn.setAttribute("disabled", "disabled");
 }
 
-//taking the value of a variable, and adding it to a new element
-//thake the current value of an element, and send it to the 'innerText'
-//of a new element
+function checkWinner (player1, guess1, player2, guess2) {
+  if ((guess1 == number) && (guess2 == number)) {
+    winner = "Tie!";
+    displayWinner(winner);
+  } else if (guess1 == number) {
+    winner = player1;
+    displayWinner(winner);
+  } else if (guess2 == number) {
+    winner = player2;
+    displayWinner(winner);  }
+}
 
-submitGuessBtn.addEventListener("click", function () {
-  var name1 = name1input.value;
-  var guess1 = guess1input.value;
-  var name2 = name2input.value;
-  var guess2 = guess2input.value;
-  name1Display.innerText = name1;
-  guess1Display.innerText = guess1;
-  name2Display.innerText = name2;
-  guess2Display.innerText = guess2;
-  clearContents();
-  var response1 = evaluateGuess(guess1, number);
-  var response2 = evaluateGuess(guess2, number);
-  response1Display.innerText = response1;
-  response2Display.innerText = response2;
-});
+function submitGuess() {
+  guesses++
+  displayNamesGuesses(name1input.value, guess1input.value, name2input.value, guess2input.value);
+  displayResponses(evaluateGuess(guess1input.value, number), evaluateGuess(guess2input.value, number));
+  checkWinner(name1input.value, guess1input.value, name2input.value, guess2input.value);
+  clearGuesses();
+
+}
+
 //evaluates guess
 function evaluateGuess (guess, number) {
   if (guess < number) {
@@ -152,4 +147,43 @@ function evaluateGuess (guess, number) {
   } else {
     return "BOOM!"
   };
+}
+
+function displayNamesGuesses (name1, guess1, name2, guess2) {
+  name1Display.innerText = name1;
+  guess1Display.innerText = guess1;
+  name2Display.innerText = name2;
+  guess2Display.innerText = guess2;
+}
+
+function displayResponses (response1, response2) {
+  response1Display.innerText = response1;
+  response2Display.innerText = response2;
+};
+
+function displayWinner (winner) {
+  var minutes = Math.floor(timer()/60);
+  var seconds = Math.floor(timer()%60);
+  rightSide.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
+  reset();
+}
+
+function reset () {
+  number = calculateMaxMinRandom(minNumber, maxNumber);
+  guesses = 0;
+  startTime = new Date();
+  winner = "";
+}
+
+function timer() {
+  return (new Date() - startTime) / 1000;
+}
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeCard);
+
+function closeCard (event) {
+  if (event.target.id === "x-button") {
+    event.target.parentElement.parentElement.remove();
+  }
 }

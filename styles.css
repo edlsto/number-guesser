@@ -3,7 +3,14 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: 'Open Sans',sans-serif;
-color: #404041;
+}
+
+.left-section{
+  color: #404041;
+}
+
+.right-section{
+  color: #6e6e6e
 }
 
 main {
@@ -242,4 +249,68 @@ p span {
 
 #challenger-2-name {
   font-weight: bold;
+}
+
+.winner-section h1 {
+  font-size: 2.5em;
+  color: #6e6e6e;
+  font-weight: 300;
+  line-height: normal;
+}
+
+div.row-1 {
+  justify-content: space-around;
+  font-weight: 800
+
+}
+
+.card-row-item {
+  display: inline;
+  margin: 5px;
+}
+
+.card-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#x-button {
+  height: 15px;
+  align-self: center;
+  padding-left: 80px;
+}
+
+.card-row-1 {
+  justify-content: center;
+  font-size: 12px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.result-card {
+  text-transform: uppercase;
+  border: 2px solid black;
+  padding: 5px 10px;
+  margin: 10px 30px 10px 10px;
+  text-align: center;
+  background-color: white;
+}
+
+#winner-name {
+  font-weight: 800;
+}
+
+.winner-section {
+  padding: 20px;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.card-row-item span {
+  font-weight: bold;
+}
+
+.last-row {
+  padding-top: 5px;
 }

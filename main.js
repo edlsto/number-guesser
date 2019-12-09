@@ -45,8 +45,11 @@ function calculateMaxMinRandom(min, max) {
 };
 
 var number = calculateMaxMinRandom(minNumber, maxNumber);
+var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+var index = 0;
 var leastGuesses = 0;
 var leastTime;
+
 
 playGame();
 
@@ -63,6 +66,7 @@ function playGame () {
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
+  window.addEventListener("keyup", cheat);
   resetBtn.addEventListener('click', resetGame);
 }
 
@@ -264,3 +268,15 @@ function closeCard (event) {
     event.target.parentElement.parentElement.remove();
   }
 }
+
+function cheat(event) {
+  var code = event.keyCode;
+  if (cheatCode[index] === code) {
+    index++;
+    if (index === cheatCode.length) {
+      number = guess1input.value;
+		};
+	} else {
+    index = 0;
+  }
+};

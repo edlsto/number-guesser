@@ -17,11 +17,31 @@ var minInput = document.querySelector('#min');
 var maxInput = document.querySelector('#max');
 var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
+var errorAlert = document.querySelector('.error-message')
 var rightSide = document.querySelector('.right-section')
 var guesses = 0;
 var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
+
+minInput.addEventListener('keyup', valueCompare)
+maxInput.addEventListener('keyup', valueCompare)
+function valueCompare() {
+ if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+    (minInput.value != "") && (maxInput.value != "")) {
+        errorAlert.removeAttribute('hidden');
+        maxInput.classList.add('max-input-border')
+    } else {
+      errorAlert.setAttribute('hidden', true);
+      maxInput.classList.remove('max-input-border')
+        }
+     };
+
+
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 
 playGame();

@@ -96,7 +96,6 @@ button[disabled] {
   background-color: #d0d2d3;
 }
 
-
 .reset-game-button {
   margin-left: 10px;
   margin-right: 10px;
@@ -106,7 +105,6 @@ button[disabled] {
   /* border: 2px solid cornflowerblue; */
   width: 40%;
   display: inline-block;
-
 }
 
 .range input{
@@ -115,7 +113,9 @@ button[disabled] {
   margin-top: 5px;
   font-size: 25px;
   margin-right: 25px;
+  outline:none;
 }
+
 
 .range-flex {
   display: flex;
@@ -161,6 +161,20 @@ padding-bottom: 30px;
   width: 415px;
 }
 
+.error-message {
+  height: 30px;
+  width: 240px;
+  position: absolute;
+}
+
+.error-message i{
+  color:  #dd1972
+}
+
+.error-message p{
+  color:  #dd1972
+}
+
 .latest {
   /* border: 3px solid darkseagreen; */
   width: 49%;
@@ -200,8 +214,12 @@ p span {
   text-decoration-thickness: 2px;
 }
 
+.max-input-border {
+  border: 2px solid #dd1972;
+}
+
 #range-card {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   }
 
 #current-range {

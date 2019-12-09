@@ -60,6 +60,7 @@ function playGame () {
   for (var i = 0; i < nameGuessInputs.length; i++) {
     nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
   };
+
   minInput.addEventListener("keyup", checkMinMaxFilled);
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   clearFormBtn.addEventListener("click", clearForm);
@@ -93,11 +94,13 @@ function checkMinMaxFilled() {
 };
 
 function checkInputsAllFilled(){
-  if ((nameGuessInputs[0].value != "") &&
-  (nameGuessInputs[1].value != "") &&
-  (nameGuessInputs[2].value != "") &&
-  (nameGuessInputs[3].value != "")
-  ){
+  if (((isNaN(parseInt(nameGuessInputs[0].value))) &&
+  (isNaN(parseInt(nameGuessInputs[2].value)))
+) && (
+  (Number.isInteger(parseInt(nameGuessInputs[1].value)) === true) &&
+  (Number.isInteger(parseInt(nameGuessInputs[3].value)) === true)
+))
+  {
     submitGuessBtn.removeAttribute("disabled");
   } else {
     submitGuessBtn.setAttribute("disabled", "disabled");
@@ -186,7 +189,6 @@ function displayWinner (winner) {
     var cards = document.querySelector(".cards");
     cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
     if (guesses < leastGuesses) {
-      console.log('not tie')
       var leastGuessesLabel = document.querySelectorAll('.least-guesses');
       for (var i = 0; i < leastGuessesLabel.length; i++) {
         leastGuessesLabel[i].remove();
@@ -195,7 +197,6 @@ function displayWinner (winner) {
       timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
       leastGuesses = guesses;
       } else if (guesses == leastGuesses) {
-        console.log('tie')
         var timeContainer = document.querySelector('.time');
         timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
         leastGuesses = guesses;

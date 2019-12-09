@@ -176,7 +176,7 @@ function displayWinner (winner) {
       leastTimeLabel.remove();
       var timeContainer = document.querySelector('.time');
       timeContainer.insertAdjacentHTML('afterend', '<div class="award-2">Least time</div>');
-      leastTime = time;
+      leastTime = time();
       }
   }
   reset();

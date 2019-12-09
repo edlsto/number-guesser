@@ -139,6 +139,41 @@ width: 30%;
 display: inline-block;
 }
 
+.guess-error1 {
+  width: 210px;
+  position: absolute;
+}
+
+.guess-error1 i {
+  color: #dd1972;
+}
+
+.guess-error1 p {
+  color: #dd1972;
+}
+
+.guess-error2 {
+  width: 210px;
+  position: absolute;
+}
+
+
+.guess-error2 i {
+  color: #dd1972;
+}
+
+.guess-error2 p {
+  color: #dd1972;
+}
+
+.guess-error i{
+  color:  #dd1972
+}
+
+.guess-error p{
+  color:  #dd1972
+}
+
 .guess input {
   height: 40px;
   width: 226px;

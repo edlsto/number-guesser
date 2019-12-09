@@ -179,6 +179,9 @@ function reset () {
   guesses = 0;
   startTime = new Date();
   winner = "";
+=======
+
+
   clearForm();
   resetBtn.setAttribute("disabled", "disabled");
 }
@@ -192,6 +195,11 @@ function reset () {
   winner = "";
   clearForm();
 }
+
+minNumber = minNumber - 10;
+maxNumber = maxNumber + 10;
+minDisplay.innerText = minNumber;
+maxDisplay.innerText = maxNumber;
 
 function resetGame () {
   displayNamesGuesses("Challenger 1 Name", "", "Challenger 2 Name", "");

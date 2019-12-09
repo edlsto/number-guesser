@@ -69,8 +69,8 @@ function playGame () {
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   minInput.addEventListener('keyup', valueCompare);
   maxInput.addEventListener('keyup', valueCompare);
-  guess1input.addEventListener('keyup', guessErrorMsg);
-  guess2input.addEventListener('keyup', guessErrorMsg2);
+  submitGuessBtn.addEventListener('click', guessErrorMsg);
+  submitGuessBtn.addEventListener('click', guessErrorMsg2);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);

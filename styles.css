@@ -119,6 +119,7 @@ button[disabled] {
   margin-left: -10px;
   width: 125px;
   align-self: flex-end;
+  margin-bottom: 30px;
 }
 
 .three-buttons {
@@ -152,6 +153,20 @@ padding-bottom: 30px;
 .name input{
   height: 40px;
   width: 415px;
+}
+
+.error-message {
+  border: 2px solid green;
+  height: 30px;
+  width: 240px
+}
+
+.error-message i{
+  color:  #dd1972
+}
+
+.error-message p{
+  color:  #dd1972
 }
 
 .latest {
@@ -194,7 +209,7 @@ p span {
 }
 
 #range-card {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   }
 
 #current-range {

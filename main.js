@@ -28,10 +28,20 @@ var maxNumber = 100;
 minInput.addEventListener('keyup', valueCompare)
 maxInput.addEventListener('keyup', valueCompare)
 function valueCompare() {
-  if(minInput.value < maxInput.value) {
-    errorAlert.setAttribute('hidden', true)
-  }
-};
+ if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+    (minInput.value != "") && (maxInput.value != "")) {
+        errorAlert.removeAttribute('hidden');
+        maxInput.classList.add('max-input-border')
+    } else {
+      errorAlert.setAttribute('hidden', true);
+      maxInput.classList.remove('max-input-border')
+        }
+     };
+
+
+
+    // errorAlert.setAttribute('hidden', true)
+
 
 
 

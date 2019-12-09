@@ -314,3 +314,8 @@ div.row-1 {
 .last-row {
   padding-top: 5px;
 }
+
+.clear-btn-container {
+  display: flex;
+  justify-content: center;
+}

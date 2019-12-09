@@ -77,7 +77,8 @@ function setMinMax () {
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
   resetBtn.removeAttribute("disabled");
-
+  minInput.value = "";
+  maxInput.value = "";
 }
 
 function calculateMaxMinRandom(min, max) {
@@ -227,7 +228,7 @@ function reset () {
   guesses = 0;
   startTime = new Date();
   winner = "";
-  clearForm();
+  clearGuesses();
   increaseRange();
 }
 

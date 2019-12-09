@@ -146,16 +146,24 @@ function displayWinner (winner) {
   var minutes = Math.floor(timer()/60);
   var seconds = Math.floor(timer()%60);
   if (rightSide.innerText == "") {
-    rightSide.insertAdjacentHTML('afterbegin', `<div class="clear-btn-container"><button class="clear-all-btn" type="button">CLEAR ALL</button></div><div class="cards"><div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div></div>`);
+    rightSide.insertAdjacentHTML('afterbegin', `<div class="clear-btn-container"><button class="clear-all-btn" type="button">CLEAR ALL</button></div><div class="cards"><div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div></div>`);
     rightSide.firstChild.nextSibling.firstChild.classList.add('least-guesses');
+    var timeContainer = document.querySelector('.time');
+    timeContainer.insertAdjacentHTML('afterend', '<div class="award-1">Least guesses</div>')
     leastGuesses = guesses;
   } else {
     var cards = document.querySelector(".cards");
-    cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
+    cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
     if (guesses <= leastGuesses) {
+      var leastGuessesLabel = document.querySelector('.award-1');
+      leastGuessesLabel.remove();
       var currentLeader = document.querySelector('.least-guesses');
       currentLeader.classList.remove('least-guesses');
-      rightSide.firstChild.nextSibling.firstChild.classList.add('least-guesses')
+
+      rightSide.firstChild.nextSibling.firstChild.classList.add('least-guesses');
+      var timeContainer = document.querySelector('.time');
+      timeContainer.insertAdjacentHTML('afterend', '<div class="award-1">Least guesses</div>')
+      leastGuesses = guesses;
     }
   }
   reset();

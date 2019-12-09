@@ -17,11 +17,33 @@ var minInput = document.querySelector('#min');
 var maxInput = document.querySelector('#max');
 var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
-var rightSide = document.querySelector('.right-section')
+var rightSide = document.querySelector('.right-section');
+var resetBtn = document.querySelector('.reset-game-button');
+var errorAlert = document.querySelector('.error-message')
+
 var guesses = 0;
 var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
+
+minInput.addEventListener('keyup', valueCompare)
+maxInput.addEventListener('keyup', valueCompare)
+function valueCompare() {
+ if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+    (minInput.value != "") && (maxInput.value != "")) {
+        errorAlert.removeAttribute('hidden');
+        maxInput.classList.add('max-input-border')
+    } else {
+      errorAlert.setAttribute('hidden', true);
+      maxInput.classList.remove('max-input-border')
+        }
+     };
+
+
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
 var index = 0;
@@ -43,6 +65,7 @@ function playGame () {
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);
+  resetBtn.addEventListener('click', resetGame);
 }
 
 function setMinMax () {
@@ -51,6 +74,8 @@ function setMinMax () {
   number = calculateMaxMinRandom(minNumber, maxNumber);
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
+  resetBtn.removeAttribute("disabled");
+
 }
 
 function calculateMaxMinRandom(min, max) {
@@ -102,7 +127,10 @@ function clearGuesses () {
 }
 
 function checkWinner (player1, guess1, player2, guess2) {
-  if (guess1 == number) {
+  if ((guess1 == number) && (guess2 == number)) {
+    winner = "Tie!";
+    displayWinner(winner);
+  } else if (guess1 == number) {
     winner = player1;
     displayWinner(winner);
   } else if (guess2 == number) {
@@ -111,12 +139,12 @@ function checkWinner (player1, guess1, player2, guess2) {
 }
 
 function submitGuess() {
-  guesses++
+  guesses++;
+  resetBtn.removeAttribute("disabled");
   displayNamesGuesses(name1input.value, guess1input.value, name2input.value, guess2input.value);
   displayResponses(evaluateGuess(guess1input.value, number), evaluateGuess(guess2input.value, number));
   checkWinner(name1input.value, guess1input.value, name2input.value, guess2input.value);
   clearGuesses();
-
 }
 
 //evaluates guess
@@ -145,19 +173,70 @@ function displayResponses (response1, response2) {
 function displayWinner (winner) {
   var minutes = Math.floor(timer()/60);
   var seconds = Math.floor(timer()%60);
-  rightSide.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
+  if (rightSide.innerText == "") {
+    rightSide.insertAdjacentHTML('afterbegin', `<div class="clear-btn-container"><button class="clear-all-btn" type="button">CLEAR ALL</button></div><div class="cards"><div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div></div>`);
+  } else {
+    var cards = document.querySelector(".cards");
+    cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> guesses</div><div class="card-row-item"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
+  }
   reset();
 }
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeAllCards);
+
+function closeAllCards (event) {
+  if (event.target.className === "clear-all-btn") {
+    rightSideSection.innerHTML = '';
+  }
+}
+
 
 function reset () {
   number = calculateMaxMinRandom(minNumber, maxNumber);
   guesses = 0;
   startTime = new Date();
   winner = "";
+  clearForm();
+  increaseRange();
+}
+
+function increaseRange() {
+  minNumber = minNumber - 10;
+  maxNumber = maxNumber + 10;
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
+}
+
+function resetGame () {
+  displayNamesGuesses("Challenger 1 Name", "", "Challenger 2 Name", "");
+  displayResponses("no guesses yet!", "no guesses yet!");
+  number = calculateMaxMinRandom(minNumber, maxNumber);
+  guesses = 0;
+  startTime = new Date();
+  winner = "";
+  clearForm();
+  resetBtn.setAttribute("disabled", "disabled");
+  minNumber = 1;
+  maxNumber = 100;
+  minInput.value = "";
+  maxInput.value = "";
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
+  updateBtn.setAttribute("disabled", "disabled");
 }
 
 function timer() {
   return (new Date() - startTime) / 1000;
+};
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeCard);
+
+function closeCard (event) {
+  if (event.target.id === "x-button") {
+    event.target.parentElement.parentElement.remove();
+  }
 }
 
 function cheat(event) {

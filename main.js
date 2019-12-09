@@ -158,3 +158,12 @@ function reset () {
 function timer() {
   return (new Date() - startTime) / 1000;
 }
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeCard);
+
+function closeCard (event) {
+  if (event.target.id === "x-button") {
+    event.target.parentElement.parentElement.remove();
+  }
+}

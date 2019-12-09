@@ -17,11 +17,33 @@ var minInput = document.querySelector('#min');
 var maxInput = document.querySelector('#max');
 var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
-var rightSide = document.querySelector('.right-section')
+var rightSide = document.querySelector('.right-section');
+var resetBtn = document.querySelector('.reset-game-button');
+var errorAlert = document.querySelector('.error-message')
+
 var guesses = 0;
 var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
+
+minInput.addEventListener('keyup', valueCompare)
+maxInput.addEventListener('keyup', valueCompare)
+function valueCompare() {
+ if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+    (minInput.value != "") && (maxInput.value != "")) {
+        errorAlert.removeAttribute('hidden');
+        maxInput.classList.add('max-input-border')
+    } else {
+      errorAlert.setAttribute('hidden', true);
+      maxInput.classList.remove('max-input-border')
+        }
+     };
+
+
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 var leastGuesses = 0;
 var leastTime;
@@ -41,6 +63,7 @@ function playGame () {
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
+  resetBtn.addEventListener('click', resetGame);
 }
 
 function setMinMax () {
@@ -49,6 +72,8 @@ function setMinMax () {
   number = calculateMaxMinRandom(minNumber, maxNumber);
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
+  resetBtn.removeAttribute("disabled");
+
 }
 
 function calculateMaxMinRandom(min, max) {
@@ -112,12 +137,12 @@ function checkWinner (player1, guess1, player2, guess2) {
 }
 
 function submitGuess() {
-  guesses++
+  guesses++;
+  resetBtn.removeAttribute("disabled");
   displayNamesGuesses(name1input.value, guess1input.value, name2input.value, guess2input.value);
   displayResponses(evaluateGuess(guess1input.value, number), evaluateGuess(guess2input.value, number));
   checkWinner(name1input.value, guess1input.value, name2input.value, guess2input.value);
   clearGuesses();
-
 }
 
 //evaluates guess
@@ -198,8 +223,44 @@ function reset () {
   guesses = 0;
   startTime = new Date();
   winner = "";
+  clearForm();
+  increaseRange();
+}
+
+function increaseRange() {
+  minNumber = minNumber - 10;
+  maxNumber = maxNumber + 10;
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
+}
+
+function resetGame () {
+  displayNamesGuesses("Challenger 1 Name", "", "Challenger 2 Name", "");
+  displayResponses("no guesses yet!", "no guesses yet!");
+  number = calculateMaxMinRandom(minNumber, maxNumber);
+  guesses = 0;
+  startTime = new Date();
+  winner = "";
+  clearForm();
+  resetBtn.setAttribute("disabled", "disabled");
+  minNumber = 1;
+  maxNumber = 100;
+  minInput.value = "";
+  maxInput.value = "";
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
+  updateBtn.setAttribute("disabled", "disabled");
 }
 
 function timer() {
   return (new Date() - startTime) / 1000;
+};
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeCard);
+
+function closeCard (event) {
+  if (event.target.id === "x-button") {
+    event.target.parentElement.parentElement.remove();
+  }
 }

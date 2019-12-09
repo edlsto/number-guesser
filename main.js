@@ -141,7 +141,6 @@ function submitGuess() {
   displayResponses(evaluateGuess(guess1input.value, number), evaluateGuess(guess2input.value, number));
   checkWinner(name1input.value, guess1input.value, name2input.value, guess2input.value);
   clearGuesses();
-
 }
 
 //evaluates guess
@@ -179,27 +178,16 @@ function reset () {
   guesses = 0;
   startTime = new Date();
   winner = "";
-=======
-
-
   clearForm();
-  resetBtn.setAttribute("disabled", "disabled");
+  increaseRange();
 }
 
-function reset () {
-  displayNamesGuesses("Challenger 1 Name", "", "Challenger 2 Name", "");
-  displayResponses("no guesses yet!", "no guesses yet!");
-  number = calculateMaxMinRandom(minNumber, maxNumber);
-  guesses = 0;
-  startTime = new Date();
-  winner = "";
-  clearForm();
+function increaseRange() {
+  minNumber = minNumber - 10;
+  maxNumber = maxNumber + 10;
+  minDisplay.innerText = minNumber;
+  maxDisplay.innerText = maxNumber;
 }
-
-minNumber = minNumber - 10;
-maxNumber = maxNumber + 10;
-minDisplay.innerText = minNumber;
-maxDisplay.innerText = maxNumber;
 
 function resetGame () {
   displayNamesGuesses("Challenger 1 Name", "", "Challenger 2 Name", "");
@@ -217,7 +205,6 @@ function resetGame () {
   minDisplay.innerText = minNumber;
   maxDisplay.innerText = maxNumber;
   updateBtn.setAttribute("disabled", "disabled");
-  rightSide.innerHTML = '';
 }
 
 function timer() {

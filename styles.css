@@ -302,7 +302,7 @@ div.row-1 {
   justify-content: center;
 }
 
-.award-1 {
+.least-guesses {
   color: white;
   background-color: #9EDD9D;
   border-radius: 20px;
@@ -310,9 +310,9 @@ div.row-1 {
   line-height: 25px;
 }
 
-.award-2 {
+.least-time {
   color: white;
-  background-color: #9EDD9D;
+  background-color: #9DB6DD;
   border-radius: 20px;
   padding: 4px 10px 0px 10px;
   line-height: 25px;

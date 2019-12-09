@@ -86,7 +86,10 @@ function calculateMaxMinRandom(min, max) {
 };
 
 function checkMinMaxFilled() {
-  if ((minInput.value != "") && (maxInput.value != "")) {
+  if (
+    (Number.isInteger(parseInt(minInput.value))) &&
+    (Number.isInteger(parseInt(maxInput.value)))
+  ) {
     updateBtn.removeAttribute("disabled");
   } else {
     updateBtn.setAttribute("disabled", "disabled");
@@ -97,8 +100,8 @@ function checkInputsAllFilled(){
   if (((isNaN(parseInt(nameGuessInputs[0].value))) &&
   (isNaN(parseInt(nameGuessInputs[2].value)))
 ) && (
-  (Number.isInteger(parseInt(nameGuessInputs[1].value)) === true) &&
-  (Number.isInteger(parseInt(nameGuessInputs[3].value)) === true)
+  (Number.isInteger(parseInt(nameGuessInputs[1].value))) &&
+  (Number.isInteger(parseInt(nameGuessInputs[3].value)))
 ))
   {
     submitGuessBtn.removeAttribute("disabled");

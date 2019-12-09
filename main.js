@@ -19,10 +19,31 @@ var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
 var rightSide = document.querySelector('.right-section');
 var resetBtn = document.querySelector('.reset-game-button');
+var errorAlert = document.querySelector('.error-message')
+
 var guesses = 0;
 var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
+
+minInput.addEventListener('keyup', valueCompare)
+maxInput.addEventListener('keyup', valueCompare)
+function valueCompare() {
+ if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+    (minInput.value != "") && (maxInput.value != "")) {
+        errorAlert.removeAttribute('hidden');
+        maxInput.classList.add('max-input-border')
+    } else {
+      errorAlert.setAttribute('hidden', true);
+      maxInput.classList.remove('max-input-border')
+        }
+     };
+
+
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 
 playGame();
@@ -102,7 +123,10 @@ function clearGuesses () {
 }
 
 function checkWinner (player1, guess1, player2, guess2) {
-  if (guess1 == number) {
+  if ((guess1 == number) && (guess2 == number)) {
+    winner = "Tie!";
+    displayWinner(winner);
+  } else if (guess1 == number) {
     winner = player1;
     displayWinner(winner);
   } else if (guess2 == number) {
@@ -191,3 +215,12 @@ function resetGame () {
 function timer() {
   return (new Date() - startTime) / 1000;
 };
+
+var rightSideSection = document.querySelector(".right-section");
+rightSideSection.addEventListener('click', closeCard);
+
+function closeCard (event) {
+  if (event.target.id === "x-button") {
+    event.target.parentElement.parentElement.remove();
+  }
+}

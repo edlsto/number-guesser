@@ -24,19 +24,18 @@ var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
 
-minInput.addEventListener('keyup', valueCompare)
-maxInput.addEventListener('keyup', valueCompare)
+
 function valueCompare() {
  if (parseInt(maxInput.value) < parseInt(minInput.value) &&
     (minInput.value != "") && (maxInput.value != "")) {
         errorAlert.removeAttribute('hidden');
-        maxInput.classList.add('max-input-border')
+        maxInput.classList.add('max-input-border');
+        updateBtn.setAttribute('disabled', 'disabled')
     } else {
       errorAlert.setAttribute('hidden', true);
       maxInput.classList.remove('max-input-border')
         }
      };
-
 
 function calculateMaxMinRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -57,6 +56,8 @@ function playGame () {
   };
   minInput.addEventListener("keyup", checkMinMaxFilled);
   maxInput.addEventListener("keyup", checkMinMaxFilled);
+  minInput.addEventListener('keyup', valueCompare);
+  maxInput.addEventListener('keyup', valueCompare);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
 }

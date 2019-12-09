@@ -24,6 +24,9 @@ var guesses = 0;
 var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
+var guess1ErrorAlert = document.querySelector('.guess-error1')
+var guess2ErrorAlert = document.querySelector('.guess-error2')
+
 
 
 function valueCompare() {
@@ -38,7 +41,7 @@ function valueCompare() {
         }
      };
 
-  
+
 function calculateMaxMinRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -65,6 +68,8 @@ function playGame () {
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   minInput.addEventListener('keyup', valueCompare);
   maxInput.addEventListener('keyup', valueCompare);
+  guess1input.addEventListener('keyup', guessErrorMsg);
+  guess2input.addEventListener('keyup', guessErrorMsg2);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);
@@ -129,6 +134,24 @@ function clearGuesses () {
   guess1input.value = "";
   guess2input.value = "";
   submitGuessBtn.setAttribute("disabled", "disabled");
+}
+
+function guessErrorMsg(){
+  if((parseInt(guess1input.value) > parseInt(maxNumber)) ||
+    (parseInt(guess1input.value) < parseInt(minNumber))) {
+    guess1ErrorAlert.removeAttribute('hidden');
+  } else {
+    guess1ErrorAlert.setAttribute('hidden', true)
+  }
+}
+
+function guessErrorMsg2(){
+  if((parseInt(guess2input.value) > parseInt(maxNumber)) ||
+    (parseInt(guess2input.value) < parseInt(minNumber))) {
+    guess2ErrorAlert.removeAttribute('hidden');
+  } else {
+    guess2ErrorAlert.setAttribute('hidden', true)
+  }
 }
 
 function checkWinner (player1, guess1, player2, guess2) {

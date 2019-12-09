@@ -278,7 +278,6 @@ div.row-1 {
 #x-button {
   height: 15px;
   align-self: center;
-  padding-left: 80px;
 }
 
 .card-row-1 {
@@ -296,6 +295,7 @@ div.row-1 {
   text-align: center;
   background-color: white;
 }
+
 
 #winner-name {
   font-weight: 800;
@@ -318,4 +318,20 @@ div.row-1 {
 .clear-btn-container {
   display: flex;
   justify-content: center;
+}
+
+.least-guesses {
+  color: white;
+  background-color: #9EDD9D;
+  border-radius: 20px;
+  padding: 4px 10px 0px 10px;
+  line-height: 25px;
+}
+
+.least-time {
+  color: white;
+  background-color: #9DB6DD;
+  border-radius: 20px;
+  padding: 4px 10px 0px 10px;
+  line-height: 25px;
 }

@@ -43,15 +43,21 @@
           <div class="guess">
             <label>Guess</label>
             <input type="text" class="name-guess" id="challenger-1-guess-input">
+              <div hidden class="guess-error1">
+                  <p><i class="fa fa-exclamation-triangle"></i>&ensp;Not within guess range</p>
+              </div>
           </div>
           <h2>Challenger 2</h2>
           <div class="name">
             <label>Name</label>
             <input type="text" class="name-guess" id="challenger-2-name-input">
-          </div>
+            </div>
           <div class="guess">
             <label>Guess</label>
             <input type="text" class="name-guess" id="challenger-2-guess-input">
+              <div hidden class="guess-error2">
+                <p><i class="fa fa-exclamation-triangle"></i>&ensp;Not within guess range</p>
+              </div>
           </div>
           <div class="three-buttons">
             <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
@@ -79,7 +85,7 @@
           </div>
         </div>
       </section><section class="right-section">
-      
+
       </section>
     </main>
     <script type="text/javascript" src="main.js"></script>

@@ -24,13 +24,17 @@ var guesses = 0;
 var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
-minInput.addEventListener('keyup', valueCompare)
-maxInput.addEventListener('keyup', valueCompare)
+var guess1ErrorAlert = document.querySelector('.guess-error1')
+var guess2ErrorAlert = document.querySelector('.guess-error2')
+
+
+
 function valueCompare() {
  if (parseInt(maxInput.value) < parseInt(minInput.value) &&
     (minInput.value != "") && (maxInput.value != "")) {
         errorAlert.removeAttribute('hidden');
-        maxInput.classList.add('max-input-border')
+        maxInput.classList.add('max-input-border');
+        updateBtn.setAttribute('disabled', 'disabled')
     } else {
       errorAlert.setAttribute('hidden', true);
       maxInput.classList.remove('max-input-border')
@@ -63,6 +67,10 @@ function playGame () {
 
   minInput.addEventListener("keyup", checkMinMaxFilled);
   maxInput.addEventListener("keyup", checkMinMaxFilled);
+  minInput.addEventListener('keyup', valueCompare);
+  maxInput.addEventListener('keyup', valueCompare);
+  submitGuessBtn.addEventListener('click', guessErrorMsg);
+  submitGuessBtn.addEventListener('click', guessErrorMsg2);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);
@@ -132,6 +140,24 @@ function clearGuesses () {
   guess1input.value = "";
   guess2input.value = "";
   submitGuessBtn.setAttribute("disabled", "disabled");
+}
+
+function guessErrorMsg(){
+  if((parseInt(guess1input.value) > parseInt(maxNumber)) ||
+    (parseInt(guess1input.value) < parseInt(minNumber))) {
+    guess1ErrorAlert.removeAttribute('hidden');
+  } else {
+    guess1ErrorAlert.setAttribute('hidden', true)
+  }
+}
+
+function guessErrorMsg2(){
+  if((parseInt(guess2input.value) > parseInt(maxNumber)) ||
+    (parseInt(guess2input.value) < parseInt(minNumber))) {
+    guess2ErrorAlert.removeAttribute('hidden');
+  } else {
+    guess2ErrorAlert.setAttribute('hidden', true)
+  }
 }
 
 function checkWinner (player1, guess1, player2, guess2) {

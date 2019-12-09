@@ -167,5 +167,7 @@ function cheat(event) {
     if (index === cheatCode.length) {
       number = guess1input.value;
 		};
-	};
+	} else {
+    index = 0;
+  }
 };

@@ -49,7 +49,6 @@ function calculateMaxMinRandom(min, max) {
 };
 
 function playGame () {
-
   var winner;
   updateBtn.addEventListener('click', setMinMax);
   for (var i = 0; i < nameGuessInputs.length; i++) {

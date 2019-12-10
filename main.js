@@ -22,37 +22,34 @@ var resetBtn = document.querySelector('.reset-game-button');
 var errorAlert = document.querySelector('.error-message');
 var cards = document.querySelector(".cards");
 var guesses = 0;
-var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
-minInput.addEventListener('keyup', valueCompare)
-maxInput.addEventListener('keyup', valueCompare)
-function valueCompare() {
- if (parseInt(maxInput.value) < parseInt(minInput.value) &&
-    (minInput.value != "") && (maxInput.value != "")) {
-        errorAlert.removeAttribute('hidden');
-        maxInput.classList.add('max-input-border')
-    } else {
-      errorAlert.setAttribute('hidden', true);
-      maxInput.classList.remove('max-input-border')
-        }
-     };
-
-
-function calculateMaxMinRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
 var index = 0;
 var leastGuesses = 0;
 var leastTime;
-
+var startTime = new Date();
 
 playGame();
 
+function valueCompare() {
+  if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+      (minInput.value != "") && (maxInput.value != "")) {
+    errorAlert.removeAttribute('hidden');
+    maxInput.classList.add('max-input-border')
+  } else {
+    errorAlert.setAttribute('hidden', true);
+    maxInput.classList.remove('max-input-border');
+  }
+};
+
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 function playGame () {
+
   var winner;
   updateBtn.addEventListener('click', setMinMax);
   for (var i = 0; i < nameGuessInputs.length; i++) {
@@ -61,13 +58,16 @@ function playGame () {
   for (var i = 0; i < nameGuessInputs.length; i++) {
     nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
   };
-
+  rightSide.addEventListener('click', closeAllCards);
+  rightSide.addEventListener('click', closeCard);
   minInput.addEventListener("keyup", checkMinMaxFilled);
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);
   resetBtn.addEventListener('click', resetGame);
+  minInput.addEventListener('keyup', valueCompare)
+  maxInput.addEventListener('keyup', valueCompare)
 }
 
 function setMinMax () {
@@ -180,9 +180,7 @@ function displayResponses (response1, response2) {
 };
 
 function displayWinner (winner) {
-  var minutes = Math.floor(timer()/60);
-  var seconds = Math.floor(timer()%60);
-  if (rightSide.innerText == "") {
+  if (leastGuesses == 0) {
     addClearAllBtn();
     addCard();
     addInitialLabels();
@@ -202,6 +200,8 @@ function displayWinner (winner) {
 }
 
 function addCard() {
+  var minutes = Math.floor(timer()/60);
+  var seconds = Math.floor(timer()%60);
   cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
 }
 
@@ -238,9 +238,6 @@ function addLeastGuessesLabel () {
   leastGuesses = guesses;
 }
 
-var rightSideSection = document.querySelector(".right-section");
-rightSideSection.addEventListener('click', closeAllCards);
-
 function closeAllCards (event) {
   if (event.target.className === "clear-all-btn") {
     rightSideSection.innerHTML = '';
@@ -272,6 +269,10 @@ function resetGame () {
   winner = "";
   clearForm();
   resetBtn.setAttribute("disabled", "disabled");
+  resetMinMax();
+}
+
+function resetMinMax () {
   minNumber = 1;
   maxNumber = 100;
   minInput.value = "";
@@ -284,9 +285,6 @@ function resetGame () {
 function timer() {
   return (new Date() - startTime) / 1000;
 };
-
-var rightSideSection = document.querySelector(".right-section");
-rightSideSection.addEventListener('click', closeCard);
 
 function closeCard (event) {
   if (event.target.id === "x-button") {

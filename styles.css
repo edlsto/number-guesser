@@ -105,8 +105,9 @@ button[disabled] {
   /* border: 2px solid cornflowerblue; */
   width: 40%;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20px;
 }
+
 
 #challenger-1-name-input {
     width: 100%
@@ -205,6 +206,7 @@ width: 64%;
 display: inline-block;
 padding-top: 10px;
 padding-bottom: 30px;
+padding-right: 15px;
 }
 
 .name input{
@@ -392,7 +394,16 @@ div.row-line-1:nth-child(2) {
   font-size: 14px;
 }
 
+@media screen and (max-width: 1200px) {
+  button {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
+  .card {
+    padding-bottom: 20px;
+  }
   div.three-buttons {
     flex-direction: column;
     align-items: center;
@@ -412,7 +423,9 @@ div.row-line-1:nth-child(2) {
 
   .range {
     width: 100%;
+    margin-bottom: 15px;
   }
+
 
   .button1 {
     align-self: flex-start;
@@ -451,7 +464,7 @@ div.row-line-1:nth-child(2) {
   }
 
   .left-section {
-    background-color: rebeccapurple;
+    background-color: color: #404041;
     width: 100%;
   }
 
@@ -486,8 +499,20 @@ div.row-line-1:nth-child(2) {
     flex-direction: column;
   }
 
-}
+  .card {
+    padding:20px;
+  }
 
-@media screen and (max-width: 650px) {
+  #range-card{
+    padding: 20px;
+  }
+
+
+#challenger-card {
+    padding: 20px;
+  }
+
+
+
 
 }

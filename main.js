@@ -262,7 +262,7 @@ function addLeastGuessesLabel () {
 
 function closeAllCards (event) {
   if (event.target.className === "clear-all-btn") {
-    rightSideSection.innerHTML = '';
+    rightSide.innerHTML = '';
   }
 }
 
@@ -311,6 +311,10 @@ function timer() {
 function closeCard (event) {
   if (event.target.id === "x-button") {
     event.target.parentElement.parentElement.remove();
+  }
+  var cards = document.querySelector(".cards");
+  if (cards.innerHTML == "") {
+    rightSide.firstChild.remove()
   }
 }
 

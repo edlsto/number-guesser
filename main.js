@@ -19,9 +19,9 @@ var minDisplay = document.querySelector('#min-display');
 var maxDisplay = document.querySelector('#max-display');
 var rightSide = document.querySelector('.right-section');
 var resetBtn = document.querySelector('.reset-game-button');
-var errorAlert = document.querySelector('.error-message')
+var errorAlert = document.querySelector('.error-message');
+var cards = document.querySelector(".cards");
 var guesses = 0;
-var startTime = new Date();
 var minNumber = 1;
 var maxNumber = 100;
 var guess1ErrorAlert = document.querySelector('.guess-error1')
@@ -31,20 +31,21 @@ var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
 var index = 0;
 var leastGuesses = 0;
 var leastTime;
+var startTime = new Date();
 
 playGame();
 
 function valueCompare() {
-if (parseInt(maxInput.value) < parseInt(minInput.value) &&
-  (minInput.value != "") && (maxInput.value != "")) {
-      errorAlert.removeAttribute('hidden');
-      maxInput.classList.add('max-input-border');
-      updateBtn.setAttribute('disabled', 'disabled')
-  } else {
-    errorAlert.setAttribute('hidden', true);
-    maxInput.classList.remove('max-input-border')
-  }
-};
+ if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+    (minInput.value != "") && (maxInput.value != "")) {
+        errorAlert.removeAttribute('hidden');
+        maxInput.classList.add('max-input-border');
+        updateBtn.setAttribute('disabled', 'disabled')
+    } else {
+      errorAlert.setAttribute('hidden', true);
+      maxInput.classList.remove('max-input-border')
+        }
+     };
 
 function calculateMaxMinRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -59,8 +60,8 @@ function playGame () {
   for (var i = 0; i < nameGuessInputs.length; i++) {
     nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
   };
-  rightSide.addEventListener('click', closeCard);
   rightSide.addEventListener('click', closeAllCards);
+  rightSide.addEventListener('click', closeCard);
   minInput.addEventListener("keyup", checkMinMaxFilled);
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   minInput.addEventListener('keyup', valueCompare);
@@ -69,6 +70,8 @@ function playGame () {
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);
   resetBtn.addEventListener('click', resetGame);
+  minInput.addEventListener('keyup', valueCompare)
+  maxInput.addEventListener('keyup', valueCompare)
 }
 
 function setMinMax () {
@@ -176,7 +179,6 @@ function submitGuess() {
   }
 };
 
-//evaluates guess
 function evaluateGuess (guess, number) {
   if (guess < number) {
     return "That's too low"
@@ -200,42 +202,63 @@ function displayResponses (response1, response2) {
 };
 
 function displayWinner (winner) {
-  var minutes = Math.floor(timer()/60);
-  var seconds = Math.floor(timer()%60);
-  if (rightSide.innerText == "") {
-    rightSide.insertAdjacentHTML('afterbegin', `<div class="clear-btn-container"><button class="clear-all-btn" type="button">CLEAR ALL</button></div><div class="cards"><div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div></div>`);
-    var timeContainer = document.querySelector('.time');
-    timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
-    timeContainer.insertAdjacentHTML('afterend', '<div class="least-time">Least time</div>')
-    leastGuesses = guesses;
-    leastTime = timer();
+  if (leastGuesses == 0) {
+    addClearAllBtn();
+    addCard();
+    addInitialLabels();
   } else {
-    var cards = document.querySelector(".cards");
-    cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
+    addCard();
     if (guesses < leastGuesses) {
-      var leastGuessesLabel = document.querySelectorAll('.least-guesses');
-      for (var i = 0; i < leastGuessesLabel.length; i++) {
-        leastGuessesLabel[i].remove();
-      }
-      var timeContainer = document.querySelector('.time');
-      timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
-      leastGuesses = guesses;
-      } else if (guesses == leastGuesses) {
-        var timeContainer = document.querySelector('.time');
-        timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
-        leastGuesses = guesses;
-      }
+      removeLeastGuessesLabel();
+      addLeastGuessesLabel();
+    } else if (guesses == leastGuesses) {
+      addLeastGuessesLabel();
+    }
     if (timer() < leastTime) {
-      var leastTimeLabel = document.querySelector('.least-time');
-      leastTimeLabel.remove();
-      var timeContainer = document.querySelector('.time');
-      timeContainer.insertAdjacentHTML('afterend', '<div class="least-time">Least time</div>');
-      leastTime = timer();
-      }
+      addLeastTimeLabel();
+    }
   }
   reset();
 }
 
+function addCard() {
+  var minutes = Math.floor(timer()/60);
+  var seconds = Math.floor(timer()%60);
+  cards.insertAdjacentHTML('afterbegin', `<div class="result-card"><div class="card-row row-1"><div class="row-line-1 card-row-item">${name1input.value}</div><div class="row-line-1 card-row-item">vs.</div><div class="row-line-1 card-row-item">${name2input.value}</div></div><div class="winner-section"><h1 id="winner-name">${winner}</h1><h1>Winner</h1></div><div class="card-row last-row"><div class="card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div><div class="card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div><img src="./assets/close.svg" id="x-button"></div></div>`);
+}
+
+function addClearAllBtn () {
+  rightSide.insertAdjacentHTML('afterbegin', `<div class="clear-btn-container"><button class="clear-all-btn" type="button">CLEAR ALL</button></div>`);
+}
+
+function addLeastTimeLabel () {
+  var leastTimeLabel = document.querySelector('.least-time');
+  leastTimeLabel.remove();
+  var timeContainer = document.querySelector('.time');
+  timeContainer.insertAdjacentHTML('afterend', '<div class="least-time">Least time</div>');
+  leastTime = timer();
+}
+
+function addInitialLabels () {
+  var timeContainer = document.querySelector('.time');
+  timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
+  timeContainer.insertAdjacentHTML('afterend', '<div class="least-time">Least time</div>')
+  leastGuesses = guesses;
+  leastTime = timer();
+}
+
+function removeLeastGuessesLabel() {
+  var leastGuessesLabel = document.querySelectorAll('.least-guesses');
+  for (var i = 0; i < leastGuessesLabel.length; i++) {
+    leastGuessesLabel[i].remove();
+  }
+}
+
+function addLeastGuessesLabel () {
+  var timeContainer = document.querySelector('.time');
+  timeContainer.insertAdjacentHTML('afterend', '<div class="least-guesses">Fewest guesses</div>');
+  leastGuesses = guesses;
+}
 
 function closeAllCards (event) {
   if (event.target.className === "clear-all-btn") {
@@ -268,6 +291,10 @@ function resetGame () {
   winner = "";
   clearForm();
   resetBtn.setAttribute("disabled", "disabled");
+  resetMinMax();
+}
+
+function resetMinMax () {
   minNumber = 1;
   maxNumber = 100;
   minInput.value = "";
@@ -280,8 +307,6 @@ function resetGame () {
 function timer() {
   return (new Date() - startTime) / 1000;
 };
-
-
 
 function closeCard (event) {
   if (event.target.id === "x-button") {

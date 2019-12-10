@@ -26,34 +26,29 @@ var minNumber = 1;
 var maxNumber = 100;
 var guess1ErrorAlert = document.querySelector('.guess-error1')
 var guess2ErrorAlert = document.querySelector('.guess-error2')
-
-
-
-function valueCompare() {
- if (parseInt(maxInput.value) < parseInt(minInput.value) &&
-    (minInput.value != "") && (maxInput.value != "")) {
-        errorAlert.removeAttribute('hidden');
-        maxInput.classList.add('max-input-border');
-        updateBtn.setAttribute('disabled', 'disabled')
-    } else {
-      errorAlert.setAttribute('hidden', true);
-      maxInput.classList.remove('max-input-border')
-        }
-     };
-
-
-function calculateMaxMinRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 var number = calculateMaxMinRandom(minNumber, maxNumber);
 var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
 var index = 0;
 var leastGuesses = 0;
 var leastTime;
 
-
 playGame();
+
+function valueCompare() {
+if (parseInt(maxInput.value) < parseInt(minInput.value) &&
+  (minInput.value != "") && (maxInput.value != "")) {
+      errorAlert.removeAttribute('hidden');
+      maxInput.classList.add('max-input-border');
+      updateBtn.setAttribute('disabled', 'disabled')
+  } else {
+    errorAlert.setAttribute('hidden', true);
+    maxInput.classList.remove('max-input-border')
+  }
+};
+
+function calculateMaxMinRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
 function playGame () {
   var winner;
@@ -64,13 +59,12 @@ function playGame () {
   for (var i = 0; i < nameGuessInputs.length; i++) {
     nameGuessInputs[i].addEventListener("keyup", checkInputsAnyFilled);
   };
-
+  rightSide.addEventListener('click', closeCard);
+  rightSide.addEventListener('click', closeAllCards);
   minInput.addEventListener("keyup", checkMinMaxFilled);
   maxInput.addEventListener("keyup", checkMinMaxFilled);
   minInput.addEventListener('keyup', valueCompare);
   maxInput.addEventListener('keyup', valueCompare);
-  // submitGuessBtn.addEventListener('click', guessErrorMsg);
-  // submitGuessBtn.addEventListener('click', guessErrorMsg2);
   clearFormBtn.addEventListener("click", clearForm);
   submitGuessBtn.addEventListener("click", submitGuess);
   window.addEventListener("keyup", cheat);
@@ -148,26 +142,6 @@ function evaluateRange(guess){
     return true;
   }
 }
-//
-// function guessErrorMsg(){
-//   if((parseInt(guess1input.value) > parseInt(maxNumber)) ||
-//     (parseInt(guess1input.value) < parseInt(minNumber))) {
-//
-//     guess1input.value = "";
-//
-//   } else {
-//     guess1ErrorAlert.setAttribute('hidden', true)
-//   }
-// }
-//
-// function guessErrorMsg2(){
-//   if((parseInt(guess2input.value) > parseInt(maxNumber)) ||
-//     (parseInt(guess2input.value) < parseInt(minNumber))) {
-//
-//   } else {
-//     guess2ErrorAlert.setAttribute('hidden', true)
-//   }
-// }
 
 function checkWinner (player1, guess1, player2, guess2) {
   if ((guess1 == number) && (guess2 == number)) {
@@ -262,12 +236,10 @@ function displayWinner (winner) {
   reset();
 }
 
-var rightSideSection = document.querySelector(".right-section");
-rightSideSection.addEventListener('click', closeAllCards);
 
 function closeAllCards (event) {
   if (event.target.className === "clear-all-btn") {
-    rightSideSection.innerHTML = '';
+    rightSide.innerHTML = '';
   }
 }
 
@@ -309,12 +281,15 @@ function timer() {
   return (new Date() - startTime) / 1000;
 };
 
-var rightSideSection = document.querySelector(".right-section");
-rightSideSection.addEventListener('click', closeCard);
+
 
 function closeCard (event) {
   if (event.target.id === "x-button") {
     event.target.parentElement.parentElement.remove();
+  }
+  var cards = document.querySelector(".cards");
+  if (cards.innerHTML == "") {
+    rightSide.firstChild.remove()
   }
 }
 

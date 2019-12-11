@@ -8,78 +8,78 @@
     <title>Number Guesser</title>
   </head>
   <body>
-    <header>
-      <h1>Number<span>Guesser</span></h1>
-        <div class="header-line"></div>
-        <h3>Ultimate Challenger Edition</h3>
-        <div class="header-line"></div>
+    <header class="header">
+      <h1 class="header__title">Number<span class="header--lightface">Guesser</span></h1>
+        <div class="header__line"></div>
+        <h3 class="header__subtitle">Ultimate Challenger Edition</h3>
+        <div class="header__line"></div>
     </header>
-    <main>
+    <main class="background">
       <section class="left-section">
-        <div id="range-card"class="card">
+        <div class="card range--extra-space-bottom">
           <h2>Set Range</h2>
-          <div class="range-flex">
+          <div class="range--flex">
           <div class="range">
-            <label>Min Range</label>
-            <input type="text" id="min">
+            <label class="card__label">Min Range</label>
+            <input type="text" id="min" class="card__input">
           </div>
           <div id="max-range"class="range">
-            <label>Max Range</label>
-            <input type="text" id="max">
-              <div hidden class="error-message">
+            <label class="card__label">Max Range</label>
+            <input type="text" id="max" class="card__input">
+              <div hidden class="range__error">
                 <p><i class="fa fa-exclamation-triangle"></i>&ensp;Must be greater than min</p>
               </div>
           </div>
-          <button type="button" name="button" class="update-button" disabled="disabled">UPDATE</button>
+          <button type="button" name="button" class="range__btn card__btn" disabled="disabled">UPDATE</button>
           </div>
         </div>
         <div id="challenger-card"class="card">
-          <p id="current-range">The current range is between <span id="min-display">1</span> and <span id="max-display">100</span></p>
+          <p class="guess--range-text">The Current Range is <span id="min-display" class="guess--emphasis">1</span> and <span id="max-display" class="guess--emphasis">100</span></p>
           <h2>Challenger 1</h2>
-          <div class="name">
-            <label>Name</label>
-            <input type="text" class="name-guess" id="challenger-1-name-input">
+          <div class="guess--name-inputs">
+            <label class="card__label">Name</label>
+            <input type="text" class="name-guess card__input" id="challenger-1-name-input">
           </div>
-          <div class="guess">
-            <label>Guess</label>
-            <input type="text" class="name-guess" id="challenger-1-guess-input">
-              <div hidden class="guess-error1">
+          <div class="guess--guess-inputs">
+            <label class="card__label">Guess</label>
+            <input type="text" class="name-guess card__input" id="challenger-1-guess-input">
+              <div hidden class="latest-guess--guess-error1">
                   <p><i class="fa fa-exclamation-triangle"></i>&ensp;Not within guess range</p>
               </div>
           </div>
           <h2>Challenger 2</h2>
-          <div class="name">
-            <label>Name</label>
-            <input type="text" class="name-guess" id="challenger-2-name-input">
+          <div class="guess--name-inputs">
+            <label class="card__label">Name</label>
+            <input type="text" class="name-guess card__input" id="challenger-2-name-input">
             </div>
-          <div class="guess">
-            <label>Guess</label>
-            <input type="text" class="name-guess" id="challenger-2-guess-input">
-              <div hidden class="guess-error2">
+          <div class="guess--guess-inputs">
+            <label class="card__label">Guess</label>
+            <input type="text" class="name-guess card__input" id="challenger-2-guess-input">
+              <div hidden class="latest-guess--guess-error2">
                 <p><i class="fa fa-exclamation-triangle"></i>&ensp;Not within guess range</p>
               </div>
           </div>
-          <div class="three-buttons">
-            <button type="button" name="button" disabled="disabled" class="submit-guess-button">SUBMIT GUESS</button>
-            <button type="button" name="button" disabled="disabled" class="reset-game-button">RESET GAME</button>
-            <button type="button" name="button" disabled="disabled" class="clear-form-button">CLEAR FORM</button>
+          <div class="guess__three-button-row">
+            <button type="button" name="button" disabled="disabled" class="submit-guess-button card__btn guess__btn3">SUBMIT GUESS</button>
+            <button type="button" name="button" disabled="disabled" class="reset-game-button card__btn guess__btn3">RESET GAME</button>
+            <button type="button" name="button" disabled="disabled" class="clear-form-button card__btn guess__btn3">CLEAR FORM</button>
           </div>
         </div>
         <div class="card">
           <h2 id="latest-guess-margin">Latest Guess</h2>
-          <div id="latest-guess-middle"class="latest-guess">
+          <div id="latest-guess-middle" class="latest-guess">
             <p id="challenger-1-name">Challenger 1 Name</p>
             <p>current guess</p>
-            <div class="number-space">
-              <h3 class="score" id="challenger-1-guess"></h3>
+            <div class="latest-guess--number-space">
+              <h3 class="latest-guess--score" id="challenger-1-guess"></h3>
             </div>
             <p id="response1">no guesses yet!</p>
           </div>
           <div class="latest-guess latest">
             <p id="challenger-2-name">Challenger 2 Name</p>
             <p>current guess</p>
-            <div class="number-space">
-              <h3 class="score" id="challenger-2-guess"></h3>
+            <div class="latest-guess--number-space">
+              <h3 class="latest-guess--score" id="challenger-2-guess"></h3>
             </div>
             <p id="response2">no guesses yet!</p>
           </div>

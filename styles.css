@@ -346,7 +346,7 @@
   line-height: 25px;
 }
 
-.result-card__last-row:nth-child(2) {
+.row-line-1:nth-child(2) {
   /* Select the "vs." and make smaller and lighter */
   font-weight: 100;
   font-size: 14px;

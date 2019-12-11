@@ -303,7 +303,7 @@
   /* Top and bottom rows of winner card */
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .result-card__x {

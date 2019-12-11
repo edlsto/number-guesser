@@ -238,7 +238,7 @@ function addCard() {
     <div class="result-card__card-row result-card__last-row">
       <div class="result-card__card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div>
       <div class="result-card__card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div>
-      <img src="./assets/close.svg" class="result-card__x">
+      <i class="fa fa-times-circle fa-2x result-card__x"></i>
     </div>
   </div>
   `);
@@ -333,7 +333,7 @@ function timer() {
 };
 
 function closeCard(event) {
-  if (event.target.className === "result-card__x") {
+  if (event.target.classList.contains("result-card__x")) {
     event.target.parentElement.parentElement.remove();
     var cards = document.querySelector(".cards");
     if (cards.firstElementChild === null) {

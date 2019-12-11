@@ -6,9 +6,9 @@
   font-family: 'Open Sans',sans-serif;
 }
 
-/* HEADER */
+/* LAYOUT SECTIONS */
 
-header {
+.header {
   /* Number Guesser header */
   background-color: #404041;
   width: 100%;
@@ -16,41 +16,6 @@ header {
   text-align: center;
   padding-top: 15px;
 }
-
-.header-line {
-  /* Two decorative lines on either side of header title */
-  width: 118px;
-  border-top: 1px solid white;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-h1 {
-  /* Number Guesser title */
-  color: #dd1972;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 70px;
-  line-height: 75px;
-}
-
-h1 span {
-  /* Bolder font for "Number" in "Number Guesser" */
-  font-weight: 300;
-  color: #dd1972;
-}
-
-h3 {
-  /* Header subtitle */
-  color: white;
-  font-weight: 300;
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 0 5px;
-  font-size: 23px;
-}
-
-/* PAGE SECTIONS */
 
 .left-section {
   /* Left side of page */
@@ -61,7 +26,6 @@ h3 {
   margin-right: -5px;
   color: #404041;
   border-right: 2px solid gray;
-
 }
 
 .right-section {
@@ -75,9 +39,56 @@ h3 {
   margin-left: 5px;
 }
 
-main {
-  /* Makes the right side appear gray with no content */
+.background {
   background-color: #d0d2d3;
+}
+
+.cards {
+  /* Container that holds cards */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.clear-btn-container {
+  /* Container that holds "clear all cards" button */
+  display: flex;
+  justify-content: center;
+}
+
+/* HEADER */
+
+.header__title {
+  /* Number Guesser title */
+  color: #dd1972;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 70px;
+  line-height: 75px;
+}
+
+.header--lightface {
+  /* Lighter font for "Guesser" in "Number Guesser" */
+  font-weight: 300;
+  color: #dd1972;
+}
+
+.header__subtitle {
+  /* Header subtitle */
+  color: white;
+  font-weight: 300;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 23px;
+}
+
+.header__line {
+  /* Two decorative lines on either side of header title */
+  width: 118px;
+  border-top: 1px solid white;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 /* LEFT-SIDE ELEMENTS */
@@ -89,7 +100,7 @@ main {
   padding: 15px;
 }
 
-button {
+.card__btn {
   /* Default button style */
   background-color: #6e6e6e;
   color: #ffffff;
@@ -103,24 +114,25 @@ button {
   width: 205px;
 }
 
-button:hover {
+.card__btn:hover {
   /* Hover states for buttons */
   background-color: #dd1792
 }
 
-button[disabled] {
+.card__btn[disabled] {
   /* Button when in disabled state */
   background-color: #d0d2d3;
 }
 
-input {
+.card__input {
   /* All inputs */
   height: 40px;
   font-size: 22px;
   width: 100%;
+  outline: none;
 }
 
-label {
+.card__label {
   /* All input labels */
   font-size: 20px;
   display: block;
@@ -130,90 +142,70 @@ label {
 
 .range {
   /* Divs that include range labels and inputs */
-  width: 40%;
-  display: inline-block;
   margin-right: 20px;
 }
 
-.range input{
-  /* Inputs for "set range" card */
-  width: 100%;
-  margin-top: 5px;
-  font-size: 25px;
-  outline: none;
-}
-
-.range-flex {
+.range--flex {
   /* Containing div for range inputs */
   display: flex;
   justify-content: space-between;
 }
 
-.update-button {
+.range__btn {
   /* Button in range card */
-  margin-left: 5px;
   width: 125px;
   align-self: flex-end;
 }
 
-#range-card {
-  /* extra padding bottom for range card only */
+.range--extra-space-bottom {
+  /* extra padding bottom for range card only to provide space for error msgs */
   padding-bottom: 40px;
   }
 
-
-.guess-error1,
-.guess-error2 {
-  /* Error message for guess out of range */
-  width: 210px;
+.range__error {
+  /* Error message for incorrect range */
+  height: 30px;
+  width: 240px;
   position: absolute;
-  color: #dd1972;
+  color: #dd1972
 }
 
 /* MAKE GUESS CARD */
 
-.three-buttons button {
+.guess__btn3 {
   /* Give equal width to the three buttons in a row */
   width: 32%;
 }
 
-.three-buttons {
+.guess__three-button-row {
   /* Containing div for row of 3 buttons */
   display: flex;
   justify-content: space-between;
 }
 
-.guess {
+.guess--guess-inputs {
   /* Guess inputs */
   width: 35%;
   display: inline-block;
 }
 
-.name {
+.guess--name-inputs {
   /* Width/padding/display for containing divs for name inputs and labels */
   width: 64%;
   display: inline-block;
   padding: 10px 15px 30px 0;
 }
 
-p span {
+.guess--emphasis {
   /* bold and underline the range in the middle-card display */
   font-weight: bold;
   text-decoration: underline;
 }
 
-#current-range {
+.guess--range-text {
   /* Smaller font size for the range in the middle-card display */
   font-size: 20px;
   padding-bottom: 20px;
-}
-
-.error-message {
-  /* Error message for incorrect range */
-  height: 30px;
-  width: 240px;
-  position: absolute;
-  color: #dd1972
 }
 
 /* LATEST GUESS CARD */
@@ -226,7 +218,17 @@ p span {
   margin-top: 10px;
 }
 
-.number-space {
+.latest-guess p:last-of-type {
+  /* Smaller font size for "current guess" */
+  font-size: 25px;
+}
+
+.latest-guess p:first-of-type {
+  /* Bolds challenger names in "latest guess" card */
+  font-weight: bold;
+}
+
+.latest-guess--number-space {
   /* The height of the blank space where the guesses will appear */
   height: 100px;
 }
@@ -236,7 +238,7 @@ p span {
   border-right: 2px solid gray;
 }
 
-h3.score {
+.latest-guess--score {
   /* Guess displays in "latest guess" section */
   color: #dd1972;
   font-size: 100px;
@@ -244,14 +246,12 @@ h3.score {
   line-height: 100px;
 }
 
-.latest-guess p:last-of-type {
-  /* Smaller font size for "current guess" */
-  font-size: 25px;
-}
-
-.latest-guess p:first-of-type {
-  /* Bolds challenger names in "latest guess" card */
-  font-weight: bold;
+.latest-guess--guess-error1,
+.latest-guess--guess-error2 {
+  /* Error message for guess out of range */
+  width: 210px;
+  position: absolute;
+  color: #dd1972;
 }
 
 /* WINNER CARDS */
@@ -267,7 +267,7 @@ h3.score {
   flex: 1 1 auto;
 }
 
-.winner-section h1 {
+.result-card__winner-section h1 {
   /* Big text that displays winner name in middle of winner card */
   font-size: 2.5em;
   color: #6e6e6e;
@@ -275,9 +275,10 @@ h3.score {
   line-height: normal;
 }
 
-.winner-section {
+.result-card__winner-section {
   padding: 20px;
   border-bottom: 1px solid black;
+  border-top: 1px solid black;
   width: 100%;
 }
 
@@ -286,55 +287,42 @@ h3.score {
   font-weight: 800;
 }
 
-div.row-1 {
+.result-card__row-1 {
   /* First row of winner card */
   justify-content: space-around;
   font-weight: 800
 }
 
-.card-row-item {
+.result-card__card-row-item {
   /* Items in bottom of winner card */
   display: inline;
   margin: 5px;
 }
 
-.card-row {
+.result-card__card-row {
   /* Top and bottom rows of winner card */
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-#x-button {
+.result-card__x {
   /* Close button on winner card */
   height: 15px;
   align-self: center;
 }
 
-.cards {
-  /* Container that holds cards */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.card-row-item span {
+.result-card__card-row-item span {
   /* Bold the dynamic elements in the winner card */
   font-weight: bold;
 }
 
-.last-row {
+.result-card__last-row {
   /* Last row of winner card */
   padding-top: 5px;
 }
 
-.clear-btn-container {
-  /* Div that contains close btn image */
-  display: flex;
-  justify-content: center;
-}
-
-.least-guesses {
+.result-card__least-guesses {
   /* Least guesses badge */
   color: white;
   background-color: #9EDD9D;
@@ -343,7 +331,7 @@ div.row-1 {
   line-height: 25px;
 }
 
-.least-time {
+.result-card__least-time {
   /*Least time badge */
   color: white;
   background-color: #9DB6DD;
@@ -352,7 +340,7 @@ div.row-1 {
   line-height: 25px;
 }
 
-div.row-line-1:nth-child(2) {
+.result-card__row-line-1:nth-child(2) {
   /* Select the "vs." and make smaller and lighter */
   font-weight: 100;
   font-size: 14px;
@@ -362,8 +350,24 @@ div.row-line-1:nth-child(2) {
 
 @media screen and (max-width: 1230px) {
 
-  button {
+  .card__btn {
     font-size: 14.7px;
+  }
+
+  .result-card__least-time{
+    padding: 4px 2px 0px 2px;
+    flex: 1 1 auto;
+  }
+
+  .result-card__least-guesses {
+    padding: 4px 2px 0px 2px;
+    flex: 1 1 auto;
+    margin-left: 5px;
+
+  }
+
+  .result-card__card-row {
+    margin-left: 5px;
   }
 
 }
@@ -372,77 +376,88 @@ div.row-line-1:nth-child(2) {
 
 @media screen and (max-width: 1000px) {
 
-  .card {
-    padding-bottom: 20px;
-  }
-
-  div.three-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  h1 {
-    font-size: 45px;
-  }
-
-  div.header-line {
-    width: 60px;
-  }
-
-  h3 {
-    font-size: 16px;
-  }
-
-  div.range-flex {
-    flex-direction: column;
-  }
-
-  .range {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  .update-button {
-    align-self: flex-start;
-  }
-
-  .three-buttons button {
-    width: 100%;
-  }
-
-  .name {
-    width: 100%;
-    padding-bottom: 15px;
-    padding-right: 0;
-  }
-
-  .guess {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+  /* LAYOUT */
 
   .left-section {
+    /* Left-section becomes full width */
     display: block;
     top: 0;
     padding-top: 25px;
     padding-bottom: 10px;
+    background-color: color: #404041;
+    width: 100%;
   }
 
   .right-section {
+    /* Right section moves to below .left-section */
     display: block;
+    width: 100%;
+  }
+
+  .card {
+    /* Left-side card elements */
+    padding:20px;
   }
 
   .card:first-of-type {
     margin-top: 0;
   }
 
-  .right-section {
+  /* HEADER */
+
+  .header__title {
+    /* Decrease title font size for mobile */
+    font-size: 45px;
+  }
+
+  .header__line {
+    /* Decrease header lines for mobile */
+    width: 60px;
+  }
+
+  .header__subtitle {
+    /* Decrease subtitle font size for mobile */
+    font-size: 16px;
+  }
+
+  /* RANGE CARD */
+
+  .range--flex {
+    /* Change flex direction on first card */
+    flex-direction: column;
+  }
+
+  .range {
+    margin-bottom: 15px;
     width: 100%;
   }
 
-  .left-section {
-    background-color: color: #404041;
+  .range__btn {
+    align-self: flex-start;
+  }
+
+  .guess__three-button-row {
+    flex-direction: column;
+  }
+
+  .guess__btn3 {
     width: 100%;
+  }
+
+  .guess--name-inputs {
+    width: 100%;
+    padding-bottom: 15px;
+    padding-right: 0;
+  }
+
+  .guess--guess-inputs {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .card__btn {
+    /* Increase font size on buttons */
+    font-size: 20px;
   }
 
   .latest-guess {
@@ -456,40 +471,27 @@ div.row-line-1:nth-child(2) {
     padding-bottom: 10px;
   }
 
-  .least-time{
+  /* RESULT CARD */
+
+  .result-card__least-time{
     padding: 4px 2px 0px 2px;
     flex: 1 1 auto;
   }
 
-  .least-guesses {
+  .result-card__least-guesses {
     padding: 4px 2px 0px 2px;
     flex: 1 1 auto;
     margin-left: 5px;
-
   }
 
-  #x-button {
+  .result-card__x {
     margin-left: 5px;
   }
 
-  .card-row:first-of-type {
+  .result-card__card-row:first-of-type {
     flex-direction: column;
   }
 
-  .card {
-    padding:20px;
-  }
-
-  #range-card{
-    padding: 20px;
-  }
-
-  #challenger-card {
-    padding: 20px;
-  }
-
-  button {
-    font-size: 20px;
   }
 
 }

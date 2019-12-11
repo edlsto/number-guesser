@@ -21,11 +21,11 @@ var rightSide = document.querySelector('.right-section');
 var resetBtn = document.querySelector('.reset-game-button');
 var errorAlert = document.querySelector('.range__error');
 var cards = document.querySelector(".cards");
+var guess1ErrorAlert = document.querySelector('.latest-guess--guess-error1')
+var guess2ErrorAlert = document.querySelector('.latest-guess--guess-error2')
 var guesses = 0;
 var minNumber = 1;
 var maxNumber = 100;
-var guess1ErrorAlert = document.querySelector('.latest-guess--guess-error1')
-var guess2ErrorAlert = document.querySelector('.latest-guess--guess-error2')
 var randomNumber = calculateMaxMinRandom(minNumber, maxNumber);
 var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
 var index = 0;
@@ -140,8 +140,8 @@ function clearGuesses() {
 }
 
 function evaluateRange(guess){
-  if((parseInt(guess) < parseInt(maxNumber)) &&
-    (parseInt(guess) > parseInt(minNumber))) {
+  if((parseInt(guess) <= parseInt(maxNumber)) &&
+    (parseInt(guess) >= parseInt(minNumber))) {
     return true;
   }
 }
@@ -238,7 +238,7 @@ function addCard() {
     <div class="result-card__card-row result-card__last-row">
       <div class="result-card__card-row-item"><span>${guesses}</span> ${guesses === 1 ? 'guess' : 'guesses'}</div>
       <div class="result-card__card-row-item time"><span>${minutes}</span> ${minutes < 1 || minutes > 1 ? 'minutes' : 'minute'} <span>${seconds}</span> ${seconds > 1 ? 'seconds' : 'second'}</div>
-      <img src="./assets/close.svg" class="result-card__x">
+      <i class="fa fa-times-circle fa-2x result-card__x"></i>
     </div>
   </div>
   `);
@@ -333,7 +333,7 @@ function timer() {
 };
 
 function closeCard(event) {
-  if (event.target.className === "result-card__x") {
+  if (event.target.classList.contains("result-card__x")) {
     event.target.parentElement.parentElement.remove();
     var cards = document.querySelector(".cards");
     if (cards.firstElementChild === null) {

@@ -202,7 +202,7 @@ function displayResponses(response1, response2) {
 };
 
 function displayWinner(winner) {
-  if (leastGuesses === 0) {
+  if (cards.firstElementChild === null) {
     addClearAllBtn();
     addCard();
     addInitialLabels();
@@ -283,7 +283,10 @@ function addLeastGuessesLabel() {
 
 function closeAllCards(event) {
   if (event.target.classList.contains("clear-all-btn")) {
-    rightSide.innerHTML = '';
+    rightSide.firstElementChild.remove()
+    while (cards.firstChild) {
+      cards.removeChild(cards.firstChild);
+    };
   }
 }
 
@@ -332,10 +335,10 @@ function timer() {
 function closeCard(event) {
   if (event.target.className === "result-card__x") {
     event.target.parentElement.parentElement.remove();
-  }
-  var cards = document.querySelector(".cards");
-  if (cards.innerHTML === "") {
-    rightSide.firstChild.remove()
+    var cards = document.querySelector(".cards");
+    if (cards.firstElementChild === null) {
+      rightSide.firstElementChild.remove()
+    }
   }
 }
 

@@ -264,7 +264,7 @@
 .result-card {
   /* Winner card */
   flex: 1 1 auto;
-  border: 2px solid black;
+  border: 2px solid #6e6e6e;
   padding: 5px 10px;
   margin: 10px 30px;
   background-color: white;
@@ -283,8 +283,8 @@
 .result-card__winner-section {
   width: 100%;
   padding: 20px;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  border-bottom: 2px solid #d0d2d3;
+  border-top: 2px solid #d0d2d3;
 }
 
 #winner-name {
@@ -312,8 +312,9 @@
 
 .result-card__x {
   /* Close button on winner card */
-  height: 15px;
-  align-self: center;
+  height: 25px;
+  align-self: flex-start;
+  color: #6e6e6e;
 }
 
 .result-card__card-row-item span {
@@ -345,7 +346,7 @@
   line-height: 25px;
 }
 
-.result-card__row-line-1:nth-child(2) {
+.result-card__card-row-item:nth-child(2) {
   /* Select the "vs." and make smaller and lighter */
   font-weight: 100;
   font-size: 14px;

@@ -308,7 +308,6 @@
   /* Top and bottom rows of winner card */
   display: flex;
   width: 100%;
-  justify-content: space-around;
 }
 
 .result-card__x {
@@ -325,6 +324,7 @@
 .result-card__last-row {
   /* Last row of winner card */
   padding-top: 5px;
+  justify-content: space-between;
 }
 
 .result-card__least-guesses {

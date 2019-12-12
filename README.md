@@ -16,10 +16,10 @@ Our site:
 Comp:
 ![alt="Screen shot of main page comp"](assets/main-comp2.png)
 
-Our site:
+Our site:  
 ![alt="Screen shot of mobile page"](assets/mobile-screen2.png)
 
-Comp:
+Comp:  
 ![alt="Screen shot of main page comp"](assets/mobile-comp2.png)
 
 Implemented functionality extensions include:

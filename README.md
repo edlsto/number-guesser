@@ -20,7 +20,7 @@ Our site:
 ![alt="Screen shot of mobile page"](assets/mobile-screen.png)
 
 Comp:
-![alt="Screen shot of main page comp"](assets/main-comp.png)
+![alt="Screen shot of main page comp"](assets/mobile-comp.png)
 
 Implemented functionality extensions include:
 

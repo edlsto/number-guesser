@@ -10,6 +10,8 @@ Our assignment was to create a number guesser game in which two players try to g
 
 We were provided with a visual comp that we needed to match.
 
+![alt="Screen shot of main screen"(assets/main-comp.png)]
+
 Implemented functionality extensions include:
 
 * A mobile responsive design has been implemented for the layout using media queries.

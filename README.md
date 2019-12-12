@@ -11,16 +11,16 @@ Our assignment was to create a number guesser game in which two players try to g
 We were provided with a visual comp that we needed to match.
 
 Our site:
-![alt="Screen shot of main page"](assets/main-screen.png)
+![alt="Screen shot of main page"](assets/main-screen2.png)
 
 Comp:
-![alt="Screen shot of main page comp"](assets/main-comp.png)
+![alt="Screen shot of main page comp"](assets/main-comp2.png)
 
 Our site:
-![alt="Screen shot of mobile page"](assets/mobile-screen.png)
+![alt="Screen shot of mobile page"](assets/mobile-screen2.png)
 
 Comp:
-![alt="Screen shot of main page comp"](assets/mobile-comp.png)
+![alt="Screen shot of main page comp"](assets/mobile-comp2.png)
 
 Implemented functionality extensions include:
 

@@ -10,7 +10,17 @@ Our assignment was to create a number guesser game in which two players try to g
 
 We were provided with a visual comp that we needed to match.
 
-![alt="Screen shot of main screen"](assets/main-comp.png)
+Our site:
+![alt="Screen shot of main page"](assets/main-screen.png)
+
+Comp:
+![alt="Screen shot of main page comp"](assets/main-comp.png)
+
+Our site:
+![alt="Screen shot of mobile page"](assets/mobile-screen.png)
+
+Comp:
+![alt="Screen shot of main page comp"](assets/main-comp.png)
 
 Implemented functionality extensions include:
 

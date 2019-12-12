@@ -44,8 +44,8 @@ function valueCompare() {
     } else {
       errorAlert.setAttribute('hidden', true);
       maxInput.classList.remove('max-input-border')
-        }
-     };
+    }
+ };
 
 function calculateMaxMinRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -119,8 +119,7 @@ function checkInputsAnyFilled(){
   if ((nameGuessInputs[0].value != "") ||
   (nameGuessInputs[1].value != "") ||
   (nameGuessInputs[2].value != "") ||
-  (nameGuessInputs[3].value != "")
-  ){
+  (nameGuessInputs[3].value != "")) {
     clearFormBtn.removeAttribute("disabled");
   }
 }
@@ -155,7 +154,8 @@ function checkWinner(player1, guess1, player2, guess2) {
     displayWinner(winner);
   } else if (guess2 === randomNumber) {
     winner = player2;
-    displayWinner(winner);  }
+    displayWinner(winner);
+  }
 }
 
 function submitGuess() {
@@ -347,7 +347,7 @@ function cheat(event) {
   if (cheatCode[index] === code) {
     index++;
     if (index === cheatCode.length) {
-      randomNumber = guess1input.value;
+      randomNumber = parseInt(guess1input.value);
 		};
 	} else {
     index = 0;

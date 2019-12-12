@@ -17,7 +17,7 @@ Comp:
 ![alt="Screen shot of main page comp"](assets/main-comp2.png)
 
 Our site:  
-![alt="Screen shot of mobile page"](assets/mobile-screen2.png)
+![alt="Screen shot of mobile page"](assets/mobile-screen3.png)
 
 Comp:  
 ![alt="Screen shot of main page comp"](assets/mobile-comp2.png)
